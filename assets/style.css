@@ -162,7 +162,7 @@ button{
     z-index: 5;
   }
   #map {
-    height:  900px;
+    height:  calc(100vh - 300px);
     max-width: 1440px;
     margin: 0 auto;
   }
