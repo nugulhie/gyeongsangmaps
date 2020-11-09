@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.render('intro');
 })
 app.get('/main', (req, res) => {
-  res.render('index');
+  res.render('main');
 })
 app.get('/login', (req, res) => {
     res.render('login');
