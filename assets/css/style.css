@@ -1,28 +1,3 @@
-
-    /* 여기까지가 배너부분 */
-.navibar{
-        width: 100%;
-}
-/* 여기서부터 NAV쪽 CSS */
-.login{
-    float: right;
-    margin-right: 20px;
-    font-size: 12pt;
-}
-.profile{
-    float: right;
-    margin-right: 20px;
-    font-size: 12pt;
-}
-.config{
-    float: right;
-    margin-right: 20px;
-    font-size: 12pt;
-}
-
-button{
-    margin-top: 10px;
-}
 .maps{
     margin-top: 50px;
     margin-left: 200px;
