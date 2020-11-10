@@ -4,7 +4,7 @@
 let map;
 let markers = [];
 
-//주석 테스트2
+// hey manssssss
 
 function initMap() {
   const university = { lat: 35.154, lng: 128.098 };
