@@ -1,7 +1,9 @@
 /* 여기까지가 배너부분 */
-.navibar{
-    width: 100%;
+nav{
+    display: block;
+
 }
+
 /* 여기서부터 NAV쪽 CSS */
 .login{
     float: right;

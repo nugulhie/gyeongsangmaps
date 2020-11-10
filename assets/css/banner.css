@@ -1,6 +1,6 @@
 .banner{
     position: relative;
-    z-index: 1000;
+
 }
 .banner:after{content:'';display:block;float:none;clear:both;}
 .b-left{
