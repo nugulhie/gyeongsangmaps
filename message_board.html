@@ -1,0 +1,111 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+    <style>  
+        table {  
+            border-collapse: collapse;  
+        }  
+        td , th{  
+            border: 1px solid #888;  
+            padding: 4px;  
+        }  
+	</style>  
+ 
+</head>  
+<body>  
+    <h2>메모판</h2>  
+    메모제목：<input id="title" name="title" type="text" size="60"/><br/>  
+    메모내용：<textarea id="content" name="content" cols="50" rows="8"></textarea><br/>  
+    이름：<input id="user" name="user" type="text"/><br/>  
+    <input type="button" value="메모추가" onclick="addMsg();"/>  
+    <input type="button" value="메모제거" onclick="clearMsg();"/>  
+    <hr/>  
+    <table style="width:750px">  
+        <tr>  
+            <th>메모제목</th>  
+            <th>메모내용</th>  
+            <th>이름</th>  
+            <th>메모시간</th>  
+        </tr>  
+        <tbody id="show"></tbody>  
+	</table>  
+	
+	<script>  
+		// 加载留言信息  
+        //메모 메시지 첨부
+		var loadMsg = function()  
+		{  
+			var tb = document.getElementById("show");  
+			// 清空原来显示的内容。  
+            //원래 표시된 내용을 비웁니다.
+			tb.innerHTML = "";  
+			// 遍历所有留言信息  
+            // 모든 메세지를 다 받아 적습니다
+			for(var i = 0 ; i < localStorage.length ; i++)  
+			{  
+				var key = localStorage.key(i);  
+				var date = new Date();  
+				date.setTime(key);  
+				// 获取留言时间  
+                //메모시간 받기
+				var datestr = date.toLocaleDateString()  
+					+ "&nbsp;" + date.toLocaleTimeString();  
+				// 获取留言字符串  
+                //메모 문자열 획득
+				var msgStr = localStorage.getItem(key);  
+				// 把留言字符串转换成JavaScript对象 
+                //메모 문자열을 JavaScript 대상으로 변환 
+				var msg = JSON.parse(msgStr);  
+				var row = tb.insertRow(i);  
+				// 添加第一个单元格，并显示留言内容  
+                // 첫번째 셀에 추가, 메모 내용 표시
+				row.insertCell(0).innerHTML = msg.title;  
+				// 添加第二个单元格，并显示留言内容  
+                // 두 번째 유닛 추가 및 메시지 표시
+				row.insertCell(1).innerHTML = msg.content;  
+				// 添加第三个单元格，并显示留言内容  
+                // 세번째 단자 추가 및 메시지 표시
+				row.insertCell(2).innerHTML = msg.user;  
+				// 添加第四个单元格，并显示留言内容。
+                // 네번째 유닛을 추가하고 메모를 표시  
+				row.insertCell(3).innerHTML = datestr;  
+			}  
+		}  
+		var addMsg = function()  
+		{  
+			var titleElement = document.getElementById("title");  
+			var contentElement = document.getElementById("content");  
+			var userElement = document.getElementById("user");  
+			// 将留言标题、留言内容、留言用户封装成对象  
+            //메모제목,메모내용,메모사용자를 대상으로 봉함
+			var msg = {  
+				title: titleElement.value,  
+				content: contentElement.value,  
+				user: userElement.value  
+			}  
+			var time = new Date().getTime();  
+			// 以当前时间为key来保存留言信息  
+            //현재시간을 key로 하여 메모정보 저장
+			localStorage.setItem(time , JSON.stringify(msg));  
+			titleElement.value = "";  
+			contentElement.value = "";  
+			userElement.value = "";  
+			alert("데이터가 저장되었습니다.");  
+			loadMsg();  
+		}  
+		function clearMsg()  
+		{  
+			// 清空Local Storage里保存的数据。  
+            // Local Storage에 저장된 데이터를 비웁니다.
+			localStorage.clear();  
+			alert("전체 메모 정보가 제거되었습니다.");  
+			loadMsg();  
+		}  
+		window.onload = loadMsg();  
+	</script> 
+</body>  
+</html> 
