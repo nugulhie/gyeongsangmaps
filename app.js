@@ -15,6 +15,7 @@ app.use(express.static(__dirname + "/assets"));
 app.get('/', (req, res) => {
   res.render('intro');
 })
+
 app.get('/main', (req, res) => {
   res.render('main');
 })
