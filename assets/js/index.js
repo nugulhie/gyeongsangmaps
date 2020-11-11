@@ -11,8 +11,8 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-
 const db = firebase.firestore();
+
 var username = ""
 
 //getting data
@@ -20,7 +20,7 @@ db.collection('cafes').get().then(snapshot => {
   console.log(snapshot.docs);
   snapshot.docs.forEach(doc => {
       console.log(doc.data());
-      username = doc.get("name");
+      //username = doc.get("name");
       
   });
 });
@@ -30,8 +30,6 @@ db.collection('cafes').get().then(snapshot => {
 //test
 
 var data = {sender: null, timestamp: null, lat: null, lng: null};
-
-
 
 //test
 
@@ -63,6 +61,8 @@ function initMap() {
         const mark1 = { lat: latitude, lng: longitude };
 
         const contentString = name
+
+        
         const infowindow = new google.maps.InfoWindow({
           content: contentString,
         });
@@ -79,7 +79,22 @@ function initMap() {
 });
 //DB 끝
 
-  const contentString = username
+  const contentString = 
+  '<div id="content">' +
+  '<div id="siteNotice">' +
+  "</div>" +
+  '<h1 id="firstHeading" class="firstHeading">경상대학교</h1>' +
+  '<div id="bodyContent">' +
+  "<p><b>경상대학교</b>웹프로그래밍</b>, 이것은 테스트 중임 <br>" +
+  "우리는 할 수 있다. -황태호-<br> " +
+  "나를 죽이지 못하는 고통은 나를 강하게 만든다 -황태호-<br> " +
+
+  "경상대학교 사이트 Site.</p>" +
+  '<p><a href="https://www.gnu.ac.kr/main/" target = "_blank">' +
+  "경상대학교 홈페이지</a> " +
+  "</p>" +
+  "</div>" +
+  "</div>";
       
     const infowindow = new google.maps.InfoWindow({
       content: contentString,
@@ -108,7 +123,7 @@ function addMarker(location) {
   marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
-  const contentString = username
+  const contentString = username //여기는 마커를 찍고 표시되는 이름입니당.
       
 
 
