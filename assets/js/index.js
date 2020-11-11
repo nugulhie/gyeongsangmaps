@@ -62,7 +62,7 @@ function initMap() {
         console.log(longitude)
         const mark1 = { lat: latitude, lng: longitude };
 
-        const contentString = name
+        const contentString = name 
         const infowindow = new google.maps.InfoWindow({
           content: contentString,
         });
@@ -114,6 +114,7 @@ function addMarker(location) {
 
     const infowindow = new google.maps.InfoWindow({
       content: contentString,
+      
     });
     
 }

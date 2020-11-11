@@ -7,9 +7,8 @@ html.fp-enabled{margin:0;
         -webkit-box-sizing:border-box;
         -moz-box-sizing:border-box;
         box-sizing:border-box}.fp-slide{float:left}.fp-slide,
-        .fp-slidesContainer{height:100%;
-
-            display:block}.fp-slides{z-index:1;
+        .fp-slidesContainer{height:100%;display:block}.fp-slides{
+            z-index:1;
             height:100%;
             overflow:hidden;position:relative;-webkit-transition:all .3s ease-out;transition:all .3s ease-out}.fp-section.fp-table,
             .fp-slide.fp-table{display:table;table-layout:fixed;width:100%}
