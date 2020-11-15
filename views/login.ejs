@@ -1,57 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>경상여지도 로그인</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/floating-labels/">
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css">
 
-    <!-- Bootstrap core CSS -->
-<link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Main css -->
+    <link rel="stylesheet" href="/css/loginstyle.css">
+</head>
+<body>
 
-  
+    <div class="main">
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="/img/signuplogo.png" alt="sing up image"></figure>
+                        <a href="registration" class="signup-image-link">계정이 없나요?</a>
+                    </div>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+                    <div class="signin-form">
+                        <h2 class="form-title">로그인</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="your_name" id="your_name" placeholder="ID"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="비밀번호"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>아이디 저장</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="로그인"/>
+                            </div>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+    </div>
 
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.5/examples/floating-labels/floating-labels.css" rel="stylesheet">
-  </head>
-  <body style="background-color:white">
-    <form class="form-signin" style="max-width: 500px;">
-  <div class="text-center mb-4">
-   <a href="/main"><img class="mb-4" src="/img/logo.jpg" alt=""  height="72"></a>
-  </div>
-
-  <div class="form-label-group">
-    <input type="text" id="inputid" class="form-control" placeholder="ID" required autofocus >
-    <label for="inputid">id</label>
-</div>
-
-  <div class="form-label-group">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <label for="inputPassword">Password</label>
-  </div>
-
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
-</body>
+    <!-- JS -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/loginmain.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

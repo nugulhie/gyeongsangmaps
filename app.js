@@ -22,6 +22,9 @@ app.get('/main', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login');
   })
+app.get('/registration', (req, res) => {
+   res.render('registration');
+  })  
 app.get('/myprofile', (req, res) => {
     var page ="profile"; //기본 주소
     if(req.query.page){
