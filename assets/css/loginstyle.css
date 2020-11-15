@@ -249,8 +249,12 @@ body {
   -o-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%); }
 
+.sign-in{
+padding-top: 10%;
+}
+
 .signup {
-  margin-bottom: 150px; }
+  padding-top: 10%; }
 
 .signup-content {
   padding: 75px 0; }
