@@ -1,23 +1,52 @@
 <%- include('layout/head'); %>
-<div class="sectionbar">
-    <div class="profileimg">
-     <img src="/source/img/temprofile.png" alt="">
-    </div>
-    <div>
+<style>
+    .sectionbar{
+        display: inline;
+        float: left;
+        width: 10%;
+        height: 100%;
+    }
 
-    </div>
-     <div>
-         <ul>
-            <li><a href="/myprofile?page=profile">프로필</a></li>
-            <li><a href="/myprofile?page=edit">프로필편집</a></li>
-             <li><a href="/myprofile?page=myword">내가 쓴 글보기</a></li>
-             <li></li>
-         </ul>
+    .section{
+        text-align: left;
+        margin-top: 10%;
+        width: 80%;
+    }
+    .card{
+        width: 80%;
+    }
+    .profilebody{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<div class="profilebody">
+    <div class="sectionbar">
+        <div class="card">
+            <img src="/img/tempprofile.png" class="card-img-top">
+            <div class="card-body">
+              <p class="card-text">안녕하세요오오오</p>
+            </div>
+          </div>
+
+         <div class="section">
+            <div class="list-group">
+                <a href="/myprofile?page=profile" class="list-group-item list-group-item-action">프로필</a>
+                <a href="/myprofile?page=edit" class="list-group-item list-group-item-action">프로필편집</a>
+                <a href="/myprofile?page=myword" class="list-group-item list-group-item-action">내가 쓴 글보기</a>
+              </div>
+    
+         </div>
      </div>
- </div>
- 
- <div>
-    <%- include('profilebody/'+page); %>
- </div>
+     
+     <div class="profilemain" style="
+     display: inline;
+     float: left;
+     width: 90%;
+     height: 100%;">
+        <%- include('profilebody/'+page); %>
+     </div>
+</div>
+
  
  <%- include('layout/foot'); %>
