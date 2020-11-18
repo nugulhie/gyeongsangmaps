@@ -13,6 +13,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
+
+
 const db = firebase.firestore();
 var username = ""
 
@@ -182,16 +184,16 @@ function deleteMarkers() {
 
 
 function myFunction(location) { 
+  
       db.collection("cafes").add({ 
            title: document.getElementById('activityTitle').value, 
           name: document.getElementById('activityDescription').value, 
-          geopoint : new firebase.firestor.GeoPoint(location.lat(), location.lng())
+          geopoint : new firebase.firestore.GeoPoint(24, 14)
+          
         }).then(function() { 
         console.log("Document successfully wriiten!"); 
   }) 
   .catch(function(error) {
       console.error("Error writing document: ", error);
-      let coords = []
-coords.push(new firebase.firestore.GeoPoint(form.lat.value, form.long.value))
   });
     }
