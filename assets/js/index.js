@@ -17,7 +17,9 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 var username = ""
-
+var loc;
+var zoom = 18;
+var temp_infowindow;
 //getting data
 db.collection('cafes').get().then(snapshot => {
   console.log(snapshot.docs);
@@ -46,12 +48,34 @@ let map;
 let markers = [];
 
 function initMap() {
+  console.log(initMap);
   const university = { lat: 35.154, lng: 128.098 };
   map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 18,
+    zoom: zoom,
     center: university,
   });
+  updateMap();
+}
 
+function onClickSubmit() { 
+  console.log(loc.lng());
+  console.log(loc.lat());
+  db.collection("cafes").add({ 
+       title: document.getElementById('activityTitle').value, 
+      name: document.getElementById('activityDescription').value, 
+      geopoint : new firebase.firestore.GeoPoint(loc.lat(), loc.lng()),
+      comments : new Array()
+    }).then(function() { 
+    console.log("Document successfully wriiten!"); 
+    temp_infowindow.close();
+}) 
+.catch(function(error) {
+  console.error("Error writing document: ", error);
+});
+  
+}
+function updateMap() {
+  console.log("updateMap")
 //DB에서 값 받아오고 마커 넣어줌.
   db.collection("cafes").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -81,15 +105,15 @@ function initMap() {
         "<button>수정 하기</button>" + 
         "</div>" + 
         "</div><br>" ;
-
+        contentString += '<div id="bodycomment">';
         for(var i = 0 ; i < arr.length ; i++){
           contentString = contentString + "<p>" + "<b>" + arr[i].id + "</b>" +": " + arr[i].comment + "</p>";
         }
-
+        contentString += "</div>";
         contentString += 
         '<textarea id="w3review" name="w3review" rows="1" cols="30"></textarea><br>' + 
-        "<button>댓글 달기</button>";
-
+        '<button onclick="submitComment()">댓글 달기</button>';
+        
         
         const infowindow = new google.maps.InfoWindow({
           content: contentString,
@@ -101,8 +125,9 @@ function initMap() {
           title: title,
         });
         //addMarker(latLng)
-        marker.addListener("click", () => {
+        marker.addListener("click", (event) => {
           infowindow.open(map, marker);
+          loc = event.latLng
         });
     });
 });
@@ -112,8 +137,44 @@ function initMap() {
   // This event listener will call addMarker() when the map is clicked.
   map.addListener("click", (event) => {
     addMarker(event.latLng);
+    loc = event.latLng
   });
+
 }
+
+function submitComment(){
+  console.log("submitComment");
+  console.log(loc.lat());
+  db.collection("cafes").where("geopoint", "==", new firebase.firestore.GeoPoint(loc.lat(), loc.lng()))
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            
+            console.log(doc.id, " => ", doc.data());
+            var my_map = { id : "황태호", comment: document.getElementById('w3review').value}
+            
+            console.log( document.getElementById('w3review').value);
+            db.collection("cafes").doc(doc.id).update({
+              comments : firebase.firestore.FieldValue.arrayUnion(my_map)});
+              var elem = document.createElement('p')
+    
+              elem.innerHTML = '<b>'+ "황태호: " + '</b>' + document.getElementById('w3review').value;
+              
+              document.getElementById('bodycomment').append(elem);
+              document.getElementById('w3review').value = '';  
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+ 
+}
+db.collection("cafes")
+    .onSnapshot(function(doc) {
+        console.log("변경 일어남");
+        updateMap();
+    });
+
 
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
@@ -121,12 +182,12 @@ function addMarker(location) {
     position: location,
     map: map,
   });
-  console.log(typeof(location));
+  
   markers.push(marker);
   marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
-  console.log(location.lng());
+  //console.log(location.lng());
     const infowindow = new google.maps.InfoWindow({
       content: 
       '<form action="" id="newActivity">' + 
@@ -152,11 +213,10 @@ function addMarker(location) {
       '</div> '+
       '</form>'+
       '  <div>'+
-      '    <button onclick="myFunction(location)">공유 하기</input>'+
-      '  </div>'
-
+      '    <button onclick="onClickSubmit()">공유 하기</input>'+
+      '  </div>' 
     });
-
+    temp_infowindow = infowindow;
   }
   
 // Sets the map on all markers in the array.
@@ -183,17 +243,3 @@ function deleteMarkers() {
 }
 
 
-function myFunction(location) { 
-  
-      db.collection("cafes").add({ 
-           title: document.getElementById('activityTitle').value, 
-          name: document.getElementById('activityDescription').value, 
-          geopoint : new firebase.firestore.GeoPoint(24, 14)
-          
-        }).then(function() { 
-        console.log("Document successfully wriiten!"); 
-  }) 
-  .catch(function(error) {
-      console.error("Error writing document: ", error);
-  });
-    }
