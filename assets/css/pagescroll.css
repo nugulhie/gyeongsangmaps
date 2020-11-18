@@ -12,7 +12,7 @@
     align-items: center;
   }
   
-  .container form {
+  .container .pagesc {
     box-sizing: border-box;
     text-align: center;
     padding: 22px;
@@ -115,7 +115,7 @@
     transform: translateY(-600%);
   }
   
-  .container form .labels {
+  .container .pagesc .labels {
     position: absolute;
     top: 0;
     left: 0;
@@ -132,7 +132,7 @@
     flex-direction: column;
   }
   
-  .container form .labels label {
+  .container .pagesc .labels label {
     min-width: 100vw;
     min-height: 100vh;
     display: -webkit-box;
