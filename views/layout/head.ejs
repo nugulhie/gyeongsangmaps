@@ -4,82 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/css/fullpage.min.css">
-    <style>
-        #page1{
-            background: url(/img/backgroundex2.png) no-repeat center;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/pagescroll.css">
     <link rel="stylesheet" type="text/css" href="/css/nav.css" />
     <link rel="stylesheet" type="text/css" href="/css/banner.css" />
     <link rel="stylesheet" type="text/css" href="/css/clearfix.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
     
 </head>
-<body>
-    <div class="banner">
-        <div class="b-left">
-            <a href="/"><img src="/img/logo.jpg" alt=""></a>
-        </div>
-        <div class="b-right">
-            <table>
-                <tr>
-                    <td class="b-content">자연대학</td> 
-                    <td class="b-content">인문대학</td> 
-                    <td class="b-content">공과대학</td> 
-                    <td class="b-content">사범대학</td> 
-                </tr>
-    
-                <tr class="disa" >
-                    <td><a href="">컴퓨터과학과</a></td> 
-                    <td><a href="">국어국문학과</a></td> 
-                    <td><a href="">기계항공정보융합공학과</a></td> 
-                    <td><a href="">교육학과</a></td> 
-                </tr>
-                <tr class="disa" >                        
-                    <td><a href="">화학과</a></td> 
-                    <td><a href="">독어독문학과</a></td> 
-                    <td><a href="">나노신소재공학</a></td> 
-                    <td><a href="">국어교육과</a></td> 
-                </tr>
-                <tr class="disa" >
-                    <td><a href="">생명과학과</a></td> 
-                    <td><a href="">영어영문학과</a></td> 
-                    <td><a href="">전기공학과</a></td> 
-                    <td><a href="">물리교육과</a></td>                   
-                  </tr>
-                <tr class="disa" >
-                    <td><a href="">식품영양학과</a></td> 
-                    <td><a href="">민속무용학과</a></td> 
-                    <td><a href="">전자공학과</a></td> 
-                    <td><a href="">음악교육과</a></td>                    
-                 </tr>
-                <tr class="disa" >
-                    <td><a href="">수학과</a></td> 
-                    <td><a href="">철학과</a></td> 
-                    <td><a href="">건축학과</a></td> 
-                    <td><a href="">체육교육과</a></td>                     
-                </tr>
-                <tr class="disa">
-                    <td><a href="">자연대학</a></td> 
-                    <td><a href="">중어중문학과</a></td> 
-                    <td><a href="">화학공학과</a></td> 
-                    <td><a href="">유아교육과</a></td>            
-                 </tr>
-            </table>
-        </div>
-    </div>
-    <nav>
-        <a href="myprofile" class="btn btn-light">내정보</a>
-        <a href="registration" class="btn btn-light">회원가입</a>
-        <a href="login" class="btn btn-light"> 로그인</a>
-    </nav>
-       
-    
-      
-      
+<body style="overflow: hidden;">
+    <div class="container" style="margin: 0;">
+        <form>
+          <input class="radio_b" type="radio" id="Slide1" name="slider" title="Home"  checked="checked"/>
+          <input class="radio_b" type="radio" id="Slide2" name="slider" title="Section 2"/>
+          <input class="radio_b" type="radio" id="Slide3" name="slider" title="Section 3"/>
+          <div class="labels">
+
+           
