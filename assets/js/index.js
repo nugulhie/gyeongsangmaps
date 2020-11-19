@@ -145,6 +145,7 @@ function updateMap() {
 function submitComment(){
   console.log("submitComment");
   console.log(loc.lat());
+  console.log(loc.lng());
   db.collection("cafes").where("geopoint", "==", new firebase.firestore.GeoPoint(loc.lat(), loc.lng()))
     .get()
     .then(function(querySnapshot) {
