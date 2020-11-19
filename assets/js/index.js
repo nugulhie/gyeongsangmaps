@@ -94,7 +94,7 @@ function updateMap() {
         const mark1 = { lat: latitude, lng: longitude };
        
         var contentString = 
-
+//팝업 html태그
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
@@ -197,14 +197,14 @@ function addMarker(location) {
           '<div> 당신만에 장소를 공유하세요 </div>'+
         '</header>' +
       '  <div>'+
-      '    <label class="desc" id="title1" for="Field1">장소 이름:' +
-      '    </label>'+
+      '    <span class="desc" id="title1" for="Field1">장소 이름:' +
+      '    </span>'+
       '    <div>'+
       '      <input id="activityTitle" name="Field1" type="text" value="" tabindex="1">'+
       '    </div>'+
       '  </div>'+
       '  <div>'+
-      '    <label class="desc" id="description1" for="Field2">장소를 설명해주세요!: </label>'+
+      '    <span class="desc" id="description1" for="Field2">장소를 설명해주세요!: </span>'+
       '    <div>'+
       '      <textarea id="activityDescription" name="Field2" spellcheck="true" rows="10" col="50" tabindex="2" value="default">'+
       '      </textarea>'+
