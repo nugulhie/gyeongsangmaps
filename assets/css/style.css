@@ -1,28 +1,10 @@
-.maps{
-    margin-top: 50px;
-    margin-left: 200px;
-    margin-right: 200px;
-    width:80%;
-    height:100%;
-}
-      
-#floating-panel {
-    background-color: #fff;
-    text-align: left;
-    font-family: "Roboto", "sans-serif";
-    line-height: 30px;
-    max-width: 1440px;
-    margin: 0 auto;
-    z-index: 5;
-  }
+
+     
   #map {
     height:  calc(100vh - 400px);
     max-width: 80%;
     margin: 0 auto;
     
-  }
-  .panel-cont{
-      display: block;
   }
 
   
