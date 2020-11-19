@@ -95,25 +95,6 @@
     transform: translateY(-200%);
   }
   
-  .radio_b:nth-of-type(4):checked ~ .labels label {
-    -webkit-transform: translateY(-300%);
-    transform: translateY(-300%);
-  }
-  
-  .radio_b:nth-of-type(5):checked ~ .labels label {
-    -webkit-transform: translateY(-400%);
-    transform: translateY(-400%);
-  }
-  
-  .radio_b:nth-of-type(6):checked ~ .labels label {
-    -webkit-transform: translateY(-500%);
-    transform: translateY(-500%);
-  }
-  
-  .radio_b:nth-of-type(7):checked ~ .labels label {
-    -webkit-transform: translateY(-600%);
-    transform: translateY(-600%);
-  }
   
   .container .pagesc .labels {
     position: absolute;
