@@ -20,6 +20,7 @@ var username = ""
 var loc;
 var zoom = 18;
 var temp_infowindow;
+let historicalOverlay;
 //getting data
 db.collection('cafes').get().then(snapshot => {
   console.log(snapshot.docs);
@@ -50,10 +51,30 @@ let markers = [];
 function initMap() {
   console.log(initMap);
   const university = { lat: 35.154, lng: 128.098 };
+  const imageBounds = {
+    north: 35.159639,
+    south: 35.149517,
+    east: 128.107886,
+    west: 128.090522,
+  };
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: zoom,
+    minZoom: zoom - 1,
+    
     center: university,
+    restriction: {
+      latLngBounds: imageBounds,
+      strictBounds: false,
+    },
   });
+
+  historicalOverlay = new google.maps.GroundOverlay(
+    "/img/map_image.jpg",
+    imageBounds,
+    {clickable : false}
+  );
+  
+  historicalOverlay.setMap(map);
   updateMap();
 }
 
@@ -67,6 +88,7 @@ function onClickSubmit() {
       comments : new Array()
     }).then(function() { 
     console.log("Document successfully wriiten!"); 
+    
     temp_infowindow.close();
 }) 
 .catch(function(error) {
@@ -126,8 +148,11 @@ function updateMap() {
         });
         //addMarker(latLng)
         marker.addListener("click", (event) => {
+              if(temp_infowindow)
+                   temp_infowindow.close();
           infowindow.open(map, marker);
-          loc = event.latLng
+          loc = event.latLng;
+          temp_infowindow = infowindow;
         });
     });
 });
@@ -179,45 +204,49 @@ db.collection("cafes")
 
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
+  
   const marker = new google.maps.Marker({
     position: location,
     map: map,
   });
-  
+  const infowindow = new google.maps.InfoWindow({
+    content: 
+    '<form action="" id="newActivity">' + 
+      '<header>' +
+        '<h4> 장소 공유</h4>' +
+        '<div> 당신만에 장소를 공유하세요 </div>'+
+      '</header>' +
+    '  <div>'+
+    '    <span class="desc" id="title1" for="Field1">장소 이름:' +
+    '    </span>'+
+    '    <div>'+
+    '      <input id="activityTitle" name="Field1" type="text" value="" tabindex="1">'+
+    '    </div>'+
+    '  </div>'+
+    '  <div>'+
+    '    <span class="desc" id="description1" for="Field2">장소를 설명해주세요!: </span>'+
+    '    <div>'+
+    '      <textarea id="activityDescription" name="Field2" spellcheck="true" rows="10" col="50" tabindex="2" value="default">'+
+    '      </textarea>'+
+    '    </div>'+
+    '   </div>'+
+    '  <br />'+
+    '</div> '+
+    '</form>'+
+    '  <div>'+
+    '    <button onclick="onClickSubmit()">공유 하기</input>'+
+    '  </div>' 
+  });
+
   markers.push(marker);
   marker.addListener("click", () => {
+
     infowindow.open(map, marker);
+    temp_infowindow = infowindow;
   });
   //console.log(location.lng());
-    const infowindow = new google.maps.InfoWindow({
-      content: 
-      '<form action="" id="newActivity">' + 
-        '<header>' +
-          '<h4> 장소 공유</h4>' +
-          '<div> 당신만에 장소를 공유하세요 </div>'+
-        '</header>' +
-      '  <div>'+
-      '    <span class="desc" id="title1" for="Field1">장소 이름:' +
-      '    </span>'+
-      '    <div>'+
-      '      <input id="activityTitle" name="Field1" type="text" value="" tabindex="1">'+
-      '    </div>'+
-      '  </div>'+
-      '  <div>'+
-      '    <span class="desc" id="description1" for="Field2">장소를 설명해주세요!: </span>'+
-      '    <div>'+
-      '      <textarea id="activityDescription" name="Field2" spellcheck="true" rows="10" col="50" tabindex="2" value="default">'+
-      '      </textarea>'+
-      '    </div>'+
-      '   </div>'+
-      '  <br />'+
-      '</div> '+
-      '</form>'+
-      '  <div>'+
-      '    <button onclick="onClickSubmit()">공유 하기</input>'+
-      '  </div>' 
-    });
-    temp_infowindow = infowindow;
+    
+    
   }
   
 // Sets the map on all markers in the array.
