@@ -18,7 +18,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 var username = ""
 var loc;
-var zoom = 18;
+var zoom = 17;
 var temp_infowindow;
 let historicalOverlay;
 //getting data
@@ -59,8 +59,8 @@ function initMap() {
   };
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: zoom,
-    minZoom: zoom - 1,
-    
+    minZoom: zoom,
+    disableDefaultUI: true,
     center: university,
     restriction: {
       latLngBounds: imageBounds,
@@ -68,15 +68,89 @@ function initMap() {
     },
   });
 
+   
   historicalOverlay = new google.maps.GroundOverlay(
     "/img/map_image.jpg",
     imageBounds,
     {clickable : false}
   );
-  
+
+
   historicalOverlay.setMap(map);
   updateMap();
 }
+
+function initZoomControl(map) {
+  document.querySelector(".zoom-control-in").onclick = function () {
+    map.setZoom(map.getZoom() + 1);
+  };
+
+  document.querySelector(".zoom-control-out").onclick = function () {
+    map.setZoom(map.getZoom() - 1);
+  };
+  map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+    document.querySelector(".zoom-control")
+  );
+}
+
+
+function initFullscreenControl(map) {
+  console.log("initFull");
+  const elementToSendFullscreen = map.getDiv().firstChild;
+  const fullscreenControl = document.querySelector(".fullscreen-control");
+  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
+
+  fullscreenControl.onclick = function () {
+    if (isFullscreen(elementToSendFullscreen)) {
+      exitFullscreen();
+    } else {
+      requestFullscreen(elementToSendFullscreen);
+    }
+  };
+
+  document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function () {
+    if (isFullscreen(elementToSendFullscreen)) {
+      fullscreenControl.classList.add("is-fullscreen");
+    } else {
+      fullscreenControl.classList.remove("is-fullscreen");
+    }
+  };
+}
+
+function isFullscreen(element) {
+  return (
+    (document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement) == element
+  );
+}
+
+function requestFullscreen(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.webkitRequestFullScreen) {
+    element.webkitRequestFullScreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.msRequestFullScreen) {
+    element.msRequestFullScreen();
+  }
+}
+
+function exitFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+
+
 
 function onClickSubmit() { 
   console.log(loc.lng());
@@ -98,6 +172,7 @@ function onClickSubmit() {
 }
 function updateMap() {
   console.log("updateMap")
+  initFullscreenControl(map);initFullscreenControl(map);
 //DB에서 값 받아오고 마커 넣어줌.
   db.collection("cafes").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -114,7 +189,7 @@ function updateMap() {
         console.log(name);
         
         const mark1 = { lat: latitude, lng: longitude };
-       
+        const iconBase ="/img/booot.png";
         var contentString = 
 //팝업 html태그
         '<div id="content">' +
@@ -137,6 +212,8 @@ function updateMap() {
         '<button onclick="submitComment()">댓글 달기</button>';
         
         
+        
+
         const infowindow = new google.maps.InfoWindow({
           content: contentString,
         });
@@ -145,6 +222,7 @@ function updateMap() {
           position: mark1,
           map,
           title: title,
+          icon : iconBase
         });
         //addMarker(latLng)
         marker.addListener("click", (event) => {
@@ -204,10 +282,11 @@ db.collection("cafes")
 
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
-  
+  const iconBase ="/img/booot.png";
   const marker = new google.maps.Marker({
     position: location,
     map: map,
+    icon: iconBase
   });
   const infowindow = new google.maps.InfoWindow({
     content: 

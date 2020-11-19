@@ -1,12 +1,32 @@
+/* .maps{
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    width:80%;
+    height:100%;
+} */
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
 
-     
+  
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+
   #map {
-    height:  calc(100vh - 400px);
-    max-width: 80%;
+    height: 80%;
+    max-width: 90%;
     margin: 0 auto;
-    
   }
 
+  .panel-cont{
+      display: block;
+  }
   
 
   /*myword layout css stlye*/
