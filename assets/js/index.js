@@ -60,7 +60,11 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: zoom,
     minZoom: zoom,
-    disableDefaultUI: true,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    // disableDefaultUI: true,
     center: university,
     restriction: {
       latLngBounds: imageBounds,
@@ -172,7 +176,8 @@ function onClickSubmit() {
 }
 function updateMap() {
   console.log("updateMap")
-  initFullscreenControl(map);initFullscreenControl(map);
+  // initFullscreenControl(map);
+  // initZoomControl(map);
 //DB에서 값 받아오고 마커 넣어줌.
   db.collection("cafes").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -191,7 +196,7 @@ function updateMap() {
         const mark1 = { lat: latitude, lng: longitude };
         const iconBase ="/img/booot.png";
         var contentString = 
-//팝업 html태그
+        //팝업 html태그
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
