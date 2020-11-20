@@ -10,7 +10,7 @@
                 <img src="/img/tempprofile.png" alt="" style="width: 144px; height: 144px;">
               </div>
             </div><!-- /.col -->
-
+              <button onclick="readData();"></button>
             <div class="col-xs-12 col-sm-9">
 
               <div class="profile-user-info">
@@ -18,7 +18,7 @@
                 <div class="profile-info-row">
                   <div class="profile-info-name"> 이름 </div>
                   <div class="profile-info-value">
-                    <span>황혁주</span>
+                    <span id="user_name">황혁주</span>
                   </div>
                 </div>
 
@@ -26,7 +26,7 @@
                   <div class="profile-info-name"> Email </div>
 
                   <div class="profile-info-value">
-                    <span>nugulhie@gmail.com</span>
+                    <span id="user_email">nugulhie@gmail.com</span>
                   </div>
                 </div>
 
@@ -35,7 +35,7 @@
                   <div class="profile-info-name"> 나이 </div>
 
                   <div class="profile-info-value">
-                    <span>23</span>
+                    <span id="user_age">23</span>
                   </div>
                 </div>
 
@@ -50,7 +50,7 @@
                 <div class="profile-info-row">
                   <div class="profile-info-name"> 학과 </div>
                   <div class="profile-info-value">
-                    <span>컴퓨터과학과</span>
+                    <span id="user_college">컴퓨터과학과</span>
                   </div>
                 </div>
               </div>
@@ -64,9 +64,9 @@
             <div class="col-xs-12 col-sm-6">
                 <div class="widget-body">
                   <div class="widget-main">
-                    <p>
+                    <span id="user_context">
                       프로필 설명이 들어갑니다.
-                    </p>
+                    </span>
                   </div>
                 </div>
               </div>
