@@ -48,9 +48,9 @@
     content: "";
     position: absolute;
     display: inline-block;
-    width: 8px;
-    height: 8px;
-    border: 1px solid black;
+    width: 10px;
+    height: 10px;
+    border: 2px solid black;
     border-radius: 11px;
     cursor: pointer;
     -webkit-transition: all 0.25s linear;
@@ -65,7 +65,7 @@
     left: 30px;
     opacity: 0;
     color: black;
-    font-size: 9px;
+    font-size: 13px;
     display: block;
     min-width: 80px;
     -webkit-transition: all 0.25s linear;
@@ -74,7 +74,7 @@
   
   .radio_b:checked:after {
     opacity: 1;
-    left: 20px;
+    left: 15px;
   }
   .radio_b:hover:after:not(label) {
    opacity: 1;
