@@ -284,7 +284,7 @@ db.collection("cafes")
         updateMap();
     });
 
-
+/*
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
   const iconBase ="/img/booot.png";
@@ -332,7 +332,8 @@ function addMarker(location) {
     
     
   }
-  
+  */
+
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (let i = 0; i < markers.length; i++) {
