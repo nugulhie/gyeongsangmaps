@@ -1,4 +1,4 @@
-.container {
+.containerp {
     width: 100%;
     height: 100vh;
     position: relative;
@@ -12,9 +12,8 @@
     align-items: center;
   }
   
-  .container .pagesc {
+  .containerp .pagesc {
     box-sizing: border-box;
-    text-align: center;
     padding: 22px;
     display: -webkit-inline-box;
     display: -webkit-inline-flex;
@@ -76,7 +75,7 @@
     opacity: 1;
     left: 15px;
   }
-  .radio_b:hover:after:not(label) {
+  .radio_b:hover:after:not(.Slide) {
    opacity: 1;
   }
   
@@ -96,7 +95,7 @@
   }
   
   
-  .container .pagesc .labels {
+  .containerp .pagesc .labels {
     position: absolute;
     top: 0;
     left: 0;
@@ -113,7 +112,7 @@
     flex-direction: column;
   }
   
-  .container .pagesc .labels label {
+  .containerp .pagesc .labels .Slide {
     min-width: 100vw;
     min-height: 100vh;
     display: -webkit-box;
