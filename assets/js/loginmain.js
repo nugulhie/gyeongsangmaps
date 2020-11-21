@@ -88,7 +88,7 @@
 
 // 방법2 jQuery로 함수 실행.
 $(function() {
-    
+
     const auth = firebase.auth();
   
     $("#sign_in").submit((e)=> {
@@ -100,14 +100,15 @@ $(function() {
       }else{
         const promise = auth.signInWithEmailAndPassword(email, pass)
         .then(()=>{
-          swal("Signed in", "로그인 성공", "success");
+          swal({
+            title : "로그인 성공",
+            icon : "success"
+        })
+          .then(( )=>{
+            window.location.replace("main");
+           });
           $("#sign_in")[0].reset();
-        }).catch(e => swal("에러",e.message,"error"))
-        .then( () => {
-            setTimeout( () => {
-               location.replace("main")
-            }, 1000)
-          });
+        }).catch(e => swal("에러",e.message,"error"));
       }
         e.preventDefault();
     });
