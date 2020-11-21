@@ -218,8 +218,10 @@
   box-shadow: 1px 1px 1px rgba(0, 0, 0, .15)
 }
 
-.section1{
+#section1{
     background:url(../img/Section1Background.jpg) no-repeat center;
     background-size: cover;
+    width: 100%;
+    height: calc(100vh - 20%);
 }
 
