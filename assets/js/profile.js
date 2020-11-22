@@ -12,9 +12,11 @@ var firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-var userRef = db.collection("users").doc("user");
-//doc("value 값에 userToken을 넣어야한다.")
-//프로필 수정에서 값 넘겨주는 method
+var userRef = db.collection('users').doc('user');
+// doc("value 값에 userToken을 넣어야한다.")
+// uid를 넣었을때 작동 안됨
+// 프로필 수정에서 값 넘겨주는 method
+
 
 const auth = firebase.auth();
 
@@ -36,7 +38,8 @@ auth.onAuthStateChanged(function(user){
       //user_context.innerHTML = user_context
 
       //파이어베이스에서 userData collection의 user.uid가 일치하는 문서를 찾아 그 정보를 반환한다.
-      db.collection('userData').doc(user.uid).get().then(function(doc) {
+      // userData에서 users로 변경
+      db.collection('users').doc(user.uid).get().then(function(doc) {
         if (doc.exists) {
             console.log("Document data:", doc.data());
             console.log(doc.data());
@@ -119,3 +122,25 @@ var user_context= document.getElementById('user_context');
 //   });
   
 }
+
+// //프로필 수정 페이지 edit.js로 이동
+// var my_name = document.getElementById('my_name');
+// var my_college= document.getElementById('my_college');
+// var my_context= document.getElementById('my_context');
+
+// db.collection('users').doc(user.uid).get().then(function(doc) {
+//   if (doc.exists) {
+//       console.log("Document data:", doc.data());
+//       console.log(doc.data());
+//       my_name.innerHTML = doc.get("name");
+//       my_college.innerHTML = doc.get("college");
+//       my_context.innerHTML = doc.get("context");
+      
+//   } else {
+//       // doc.data() will be undefined in this case
+//       console.log("No such document!");
+//   }
+// }).catch(function(error) {
+//   console.log("Error getting document:", error);
+//       console.log(my_name, my_college, my_context);
+//   });
