@@ -22,6 +22,9 @@ app.get('/main', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login');
   })
+  app.get('/com', (req, res) => {
+    res.render('com');
+  })
 app.get('/registration', (req, res) => {
    res.render('registration');
   })  

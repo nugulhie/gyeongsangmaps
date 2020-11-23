@@ -5,7 +5,7 @@ html,body,h1,h2,h3,h4,h5,h6,div,p,blockquote,pre,code,address,ul,ol,li,menu,nav,
 dl,dt,dd,table,thead,tbody,tfoot,label,caption,th,form,fieldset,legend,hr,input,button,textarea,object,figure,figcaption {margin:0;padding:0;}
 html, body{width:100%;}
 html{-webkit-touch-callout:none; -webkit-user-select:none; -webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
-body{width:100%; background:#fff; min-width:320px; -webkit-text-size-adjust:none;word-wrap:break-word;word-break:break-all;}
+body{width:100%; background:#fff; min-width:1px; -webkit-text-size-adjust:none;word-wrap:break-word;word-break:break-all;}
 body,input,select,textarea,button {border:none;font-size:12px; font-family:'Noto Sans KR', sans-serif;color:#727272;}
 ul,ol,li{list-style:none;}
 table{width:100%;border-spacing:0;border-collapse:collapse;}
@@ -41,11 +41,11 @@ input:focus { border: 1px solid #727272;}
 
 
 /*popup*/
-.popup{padding: 0 20px; width:500px; height:600px;background-color: #fff;}  
+.popup{padding: 0 20px; width:20vw; height:40vh;background-color: #fff;}  
 
 
 .popup .h1 {margin-bottom: 10px; padding-top: 20px; font-size: 45px; color: black; font-weight: bold;}
-.popup .h4 {margin-top: 0; padding-bottom: 20px; font-size: 15px; border-bottom: 3px solid #444 ; font-weight: 500;}
+.popup .h4 {margin-top: 0; padding-bottom: 20px; font-size: 3%; border-bottom: 3px solid #444 ; font-weight: 500;}
 .popup .cont { padding: 40px 78px; border-bottom:1px solid #e8e8e8;}
 
 
