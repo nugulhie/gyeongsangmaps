@@ -176,6 +176,7 @@ function onClickSubmit() {
 }
 function updateMap() {
   console.log("updateMap")
+  
   // initFullscreenControl(map);
   // initZoomControl(map);
 //DB에서 값 받아오고 마커 넣어줌.
@@ -231,6 +232,7 @@ function updateMap() {
         });
         //addMarker(latLng)
         marker.addListener("click", (event) => {
+          deleteMarkers();
               if(temp_infowindow)
                    temp_infowindow.close();
           infowindow.open(map, marker);
