@@ -1,4 +1,5 @@
 function addMarker(location) {
+  deleteMarkers();
     const iconBase ="/img/booot.png";
     const marker = new google.maps.Marker({
       position: location,
@@ -39,9 +40,11 @@ function addMarker(location) {
   
     markers.push(marker);
     marker.addListener("click", () => {
-  
+      temp_infowindow.close();
+      
       infowindow.open(map, marker);
       temp_infowindow = infowindow;
+      
     });
     //console.log(location.lng());
       
