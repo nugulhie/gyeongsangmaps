@@ -25,7 +25,7 @@ function addMarker(location) {
               '</tr>'+
               '<tr>'+
                 '<th><label for=""></label></th>'+
-                '<td><textarea id="activityDescription" placeholder="장소 설명을 부탁드릴게요."></textarea></td>'+
+                '<td><textarea id="activityDescription" placeholder="장소 설명을 해주세요."></textarea></td>'+
               '</tr>'+
               '</tbody>'+
             '</table>'+

@@ -27,7 +27,7 @@ footer {text-align:center;}
 textarea { border:1px solid #dbdbdb;}
 
 input[type=text],
-textarea {width:120%; height:48px; font-size:14px; color:black; 
+textarea {width:100%; height:48px; font-size:14px; color:black; 
     border:1px solid #e8e8e8; background:#fff; text-decoration:none; 
     text-indent:20px;  transition: all 0.5s; vertical-align:middle; border-radius: 3px;}
 
@@ -45,15 +45,15 @@ input:focus { border: 1px solid #727272;}
 
 
 .popup .h1 {margin-bottom: 10px; padding-top: 20px; font-size: 45px; color: black; font-weight: bold;}
-.popup .h4 {margin-top: 0; padding-bottom: 20px; font-size: 3%; border-bottom: 3px solid #444 ; font-weight: 500;}
-.popup .cont { padding: 40px 78px; border-bottom:1px solid #e8e8e8;}
+.popup .h4 {margin-top: 0; padding-bottom: 10px; font-size: 5%; border-bottom: 3px solid #444 ; font-weight: 500;}
+.popup .cont { padding: 10px 10px; border-bottom:1px solid #e8e8e8;}
 
 
 
 #activityTitle{
-    margin: 0 0 20px;
+    margin: 0 0 5px;
 }
-textarea{height:230px;}
+textarea{height:130px;}
 
 span { color:#de4f41; }
 
