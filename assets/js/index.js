@@ -174,6 +174,8 @@ function onClickSubmit() {
 });
   
 }
+
+
 function updateMap() {
   console.log("updateMap")
   
@@ -201,13 +203,13 @@ function updateMap() {
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
-        '<h4 id="firstHeading" class="firstHeading">'+ title + '</h4>' +
-        '<div id="bodyContent">' +
-        "<p>" + name + "</p>" +
+        '<div id= "bodyContent">'+
+        '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
+        '<h4 id="subheading">'+ name + "</h4>" +
         '<a href="#">자세히 보기 </a></br>'+
         "<button>수정 하기</button>" + 
         "</div>" + 
-        "</div><br>" ;
+        "<br>" ;
         contentString += '<div id="bodycomment">';
         for(var i = 0 ; i < arr.length ; i++){
           contentString = contentString + "<p>" + "<b>" + arr[i].id + "</b>" +": " + arr[i].comment + "</p>";
@@ -215,7 +217,10 @@ function updateMap() {
         contentString += "</div>";
         contentString += 
         '<textarea id="w3review" name="w3review" rows="1" cols="30"></textarea><br>' + 
-        '<button onclick="submitComment()">댓글 달기</button>';
+        '<div id="center">'+
+        '<button id="buttondesign" onclick="submitComment()">댓글 달기</button>'+
+        '</div>'+
+        '</div>';
         
         
         
@@ -251,6 +256,8 @@ function updateMap() {
   });
 
 }
+
+
 
 function submitComment(){
   console.log("submitComment");
