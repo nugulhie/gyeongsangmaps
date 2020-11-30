@@ -34,3 +34,10 @@
     height: calc(100vh - 20%);
 }
 
+
+#section2{
+  background:url(../img/backgroundex2.jpg) no-repeat center;
+  background-size: cover;
+  width: 100%;
+  height: calc(100vh + 10%);
+}
