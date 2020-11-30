@@ -39,5 +39,5 @@
   background:url(../img/backgroundex2.jpg) no-repeat center;
   background-size: cover;
   width: 100%;
-  height: calc(100vh + 10%);
+  height: calc(100vh );
 }
