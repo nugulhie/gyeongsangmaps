@@ -1,4 +1,6 @@
+let isFirst = true;
 function addMarker(location) {
+  temp_infowindow.close();
   deleteMarkers();
     const iconBase ="/img/booot.png";
     const marker = new google.maps.Marker({
@@ -9,7 +11,6 @@ function addMarker(location) {
     const infowindow = new google.maps.InfoWindow({
       content: 
       '<div class="popup" id="newActivity">'+
-        '<form action="">'+
           '<h1 class="h1">나만의 장소</h1>'+
           '<h4 class="h4">당신의 추억을 공유해 주세요.</h4>'+
           '<div class="cont">'+
@@ -30,17 +31,20 @@ function addMarker(location) {
               '</tbody>'+
             '</table>'+
           '</div>'+
-
             '<div class="txt_center">'+
                 '<button onclick="onClickSubmit()" class="btn_type1">공유 하기</input>'+
             '</div>'+
-        '</form>'+
+        
       '</div>'
     });
   
     markers.push(marker);
     marker.addListener("click", () => {
-      temp_infowindow.close();
+      if(isFirst){
+        isFirst = false;
+      }else
+        temp_infowindow.close();
+      
       
       infowindow.open(map, marker);
       temp_infowindow = infowindow;
