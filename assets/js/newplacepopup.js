@@ -1,4 +1,6 @@
+let isFirst = true;
 function addMarker(location) {
+  temp_infowindow.close();
   deleteMarkers();
     const iconBase ="/img/booot.png";
     const marker = new google.maps.Marker({
@@ -38,7 +40,11 @@ function addMarker(location) {
   
     markers.push(marker);
     marker.addListener("click", () => {
-      temp_infowindow.close();
+      if(isFirst){
+        isFirst = false;
+      }else
+        temp_infowindow.close();
+      
       
       infowindow.open(map, marker);
       temp_infowindow = infowindow;

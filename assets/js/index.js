@@ -13,8 +13,10 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-
-
+var user;
+const auth = firebase.auth();
+var uid; 
+var user_name;
 const db = firebase.firestore();
 var username = ""
 var loc;
@@ -49,6 +51,9 @@ let map;
 let markers = [];
 
 function initMap() {
+  
+  
+  
   console.log(initMap);
   const university = { lat: 35.154, lng: 128.098 };
   const imageBounds = {
@@ -157,16 +162,16 @@ function exitFullscreen() {
 
 
 function onClickSubmit() { 
+  uid = auth.currentUser.uid;
   console.log(loc.lng());
   console.log(loc.lat());
   db.collection("cafes").add({ 
        title: document.getElementById('activityTitle').value, 
       name: document.getElementById('activityDescription').value, 
       geopoint : new firebase.firestore.GeoPoint(loc.lat(), loc.lng()),
-      comments : new Array()
+      comments : new Array() 
     }).then(function() { 
     console.log("Document successfully wriiten!"); 
-    
     temp_infowindow.close();
 }) 
 .catch(function(error) {
@@ -184,7 +189,6 @@ function updateMap() {
 //DB에서 값 받아오고 마커 넣어줌.
   db.collection("cafes").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-        
         var name = doc.data().name;
         var title= doc.data().title;
         var arr = doc.data().comments;
@@ -221,9 +225,6 @@ function updateMap() {
         '<button id="buttondesign" onclick="submitComment()">댓글 달기</button>'+
         '</div>'+
         '</div>';
-        
-        
-        
 
         const infowindow = new google.maps.InfoWindow({
           content: contentString,
@@ -259,24 +260,40 @@ function updateMap() {
 
 
 
+
 function submitComment(){
+  uid = auth.currentUser.uid;
   console.log("submitComment");
   console.log(loc.lat());
   console.log(loc.lng());
+ 
+  var docRef = db.collection("userData").doc(uid);
+  docRef.get().then(function(doc) {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+        user_name = doc.data().name;
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+  }).catch(function(error) {
+    console.log("Error getting document:", error);
+  });
+
   db.collection("cafes").where("geopoint", "==", new firebase.firestore.GeoPoint(loc.lat(), loc.lng()))
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             
             console.log(doc.id, " => ", doc.data());
-            var my_map = { id : "황태호", comment: document.getElementById('w3review').value}
+            var my_map = { id : user_name, comment: document.getElementById('w3review').value}
             
             console.log( document.getElementById('w3review').value);
             db.collection("cafes").doc(doc.id).update({
               comments : firebase.firestore.FieldValue.arrayUnion(my_map)});
               var elem = document.createElement('p')
     
-              elem.innerHTML = '<b>'+ "황태호: " + '</b>' + document.getElementById('w3review').value;
+              elem.innerHTML = '<b>'+ user_name + '</b>' + " : " + document.getElementById('w3review').value;
               
               document.getElementById('bodycomment').append(elem);
               document.getElementById('w3review').value = '';  
@@ -287,6 +304,10 @@ function submitComment(){
     });
  
 }
+
+
+
+
 db.collection("cafes")
     .onSnapshot(function(doc) {
         console.log("변경 일어남");
