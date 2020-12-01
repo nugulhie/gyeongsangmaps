@@ -9,7 +9,6 @@ function addMarker(location) {
     const infowindow = new google.maps.InfoWindow({
       content: 
       '<div class="popup" id="newActivity">'+
-        '<form action="">'+
           '<h1 class="h1">나만의 장소</h1>'+
           '<h4 class="h4">당신의 추억을 공유해 주세요.</h4>'+
           '<div class="cont">'+
@@ -30,11 +29,10 @@ function addMarker(location) {
               '</tbody>'+
             '</table>'+
           '</div>'+
-
             '<div class="txt_center">'+
                 '<button onclick="onClickSubmit()" class="btn_type1">공유 하기</input>'+
             '</div>'+
-        '</form>'+
+        
       '</div>'
     });
   
