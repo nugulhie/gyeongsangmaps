@@ -1,47 +1,3 @@
-// function signUp(email, password){
-//     firebase.auth().createUserWithEmailAndPassword(email, password).then( () => {
-//       swal.fire({
-//         icon: "success",
-//         title: "Usuário criado com sucesso!",
-//         iconColor: 'green',
-//         confirmButtonColor: 'green'
-//       }).then(() => {
-  
-//         setTimeout(() => {
-//           window.location.replace("index.html")
-  
-//         }, 1000)
-  
-//       })
-//     })
-  
-//     .catch((error) => {
-//       const errorCode = error.code
-//       switch (errorCode){
-  
-//         case "auth/weak-password":
-//           swal({
-//             icon: "error",
-//             title: "Senha muito fraca!",
-//             iconColor: 'green',
-//             confirmButtonColor: 'green'
-//           })
-//           break
-  
-//         default:
-//           swal({
-//             icon: "error",
-//             title: error.message,
-//             iconColor: 'green',
-//             confirmButtonColor: 'green'
-//           })
-//       }
-//     })
-//   }
-
-
-
-
 $(function() {
   
    const auth = firebase.auth();
@@ -98,26 +54,4 @@ $(function() {
      }
        e.preventDefault();
    });
- 
- 
-   //로그아웃 기능 나중에 메뉴에 추가하면 사용
-   $(".signout").click(()=> {
-     auth.signOut().then(()=> {
-       swal("Logged Out", "Logged out successful", "success");
-     }).catch((e)=> {
-       swal("Error", e.message, "error");
-     });
-   })
-   
-   auth.onAuthStateChanged(function(user){
-     if(user){
-       $(".userEmail").text(user.email);
-       $(".loading, .notlogin").hide();
-       $(".loggedin").show();
-     }else{
-       $(".loading, .loggedin").hide();
-       $(".notlogin").show();
-     }
-   });
-
  });

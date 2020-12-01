@@ -49,3 +49,20 @@
     color:white;
     background-color: #ddd;
 }
+
+.b-content>p{
+    width: 20%;
+    font-size: 18px;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: inline;
+    color:black;
+    text-decoration: none !important;
+}
+.b-content>p:hover{
+    color:white;
+    background-color: #ddd;
+    cursor: pointer;
+}
