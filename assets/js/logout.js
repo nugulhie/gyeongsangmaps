@@ -1,6 +1,6 @@
-const auth = firebase.auth();
+const auths = firebase.auth();
 
-auth.onAuthStateChanged(function(user){
+auths.onAuthStateChanged(function(user){
     if(user){
       var elem = document.getElementById("bb-right");
       elem.style.display = "block";
@@ -17,7 +17,7 @@ auth.onAuthStateChanged(function(user){
   });
 
 function logout_button(){
-  auth.signOut().then(()=>{
+  auths.signOut().then(()=>{
     var elem = document.getElementById("bb-right");
     elem.style.display = "none";
     alert("로그아웃 되었습니다.");
