@@ -28,6 +28,12 @@
 .b-right>.b-content>#a-first{
     border-left: solid 1px #ddd;
 }
+.b-right>.b-content>#b-registration{
+    border-left: solid 1px #ddd;
+}
+ .b-right>.b-content>#a-last{
+    border-right: solid 1px #ddd;
+}
 /* 여기부터가 배너 메뉴부분 CSS */
 .b-content{
     display: inline;
@@ -49,6 +55,7 @@
     color:white;
     background-color: #ddd;
 }
+
 
 .b-content>p{
     width: 20%;
