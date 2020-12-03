@@ -63,9 +63,9 @@ function init_edit(){
   if (current != null) {
     name = current.displayName;
   }
-  var current_name = document.getElementById('current_name');
-  var current_college = document.getElementById('current_college');
-  var current_context = document.getElementById('current_context');
+  var current_name = document.getElementById('my_name');
+  var current_college = document.getElementById('my_college');
+  var current_context = document.getElementById('my_context');
 
   db.collection('users').doc(user.uid).get().then(function(doc) {
     if (doc.exists) {
@@ -73,7 +73,8 @@ function init_edit(){
         '<h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">' + name + '</h4>';
       current_name.setAttribute('value', doc.get("name"));
       current_college.setAttribute('value', doc.get("college"));
-      current_context.setAttribute('value', doc.get("context"));
+      current_context.innerHTML = 
+      '<label>프로필 설명</label>' + '<textarea class="form-control" rows="5" placeholder="프로필 설명" id="current_context">'+ doc.get("context") +'</textarea>';
     } else {
         console.log("No such document!");
     }
@@ -94,7 +95,7 @@ function update(){
   var my_context = document.getElementById('my_context').value;
   console.log(my_name, my_college, my_context);
   
-  userRef.get().then(function(doc){
+  userRef.get().then(functiomy
     if (doc.exists){  //문서 있음
       return userRef.update({
         name: document.getElementById('my_name').value,
