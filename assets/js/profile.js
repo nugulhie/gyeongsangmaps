@@ -95,42 +95,38 @@ function update(){
   var my_context = document.getElementById('my_context').value;
   console.log(my_name, my_college, my_context);
   
-  userRef.get().then(functiomy
-    if (doc.exists){  //문서 있음
-      return userRef.update({
-        name: document.getElementById('my_name').value,
-        college: document.getElementById('my_college').value,
-        context: document.getElementById('my_context').value
-      })
-    }
-    else { // 문서 없음
-      userRef.set({
-        name: document.getElementById('my_name').value,
-        college: document.getElementById('my_college').value,
-        context: document.getElementById('my_context').value,
+  userRef.get().then(function() {
+  //   if (doc.exists){  //문서 있음
+  //     return userRef.update({
+  //       name: document.getElementById('my_name').value,
+  //       college: document.getElementById('my_college').value,
+  //       context: document.getElementById('my_context').value
+  //     })
+  //   }
+  //   else { // 문서 없음
+  //     userRef.set({
+  //       name: document.getElementById('my_name').value,
+  //       college: document.getElementById('my_college').value,
+  //       context: document.getElementById('my_context').value,
         
-        age: 22,
-        email: current.email
-      })
-    }
+  //       age: 22,
+  //       email: current.email
+  //     })
+  //   }
+  // }).catch(function(error) {
+  //   console.log("Error setting document:", error);
+  //   console.log(my_name, my_college, my_context);
+  // });
+  
+  return userRef.update({
+    name: document.getElementById('my_name').value,
+    college: document.getElementById('my_college').value,
+    context: document.getElementById('my_context').value
   })
-  .then(function() {
+  .then(function(){
     console.log("Document successfully written!");
   })
   .catch(function(error) {
-    console.log("Error setting document:", error);
-    console.log(my_name, my_college, my_context);
+    console.log("Error Writing document:", error);
   });
-  
-  // return userRef.update({
-  //   name: document.getElementById('my_name').value,
-  //   college: document.getElementById('my_college').value,
-  //   context: document.getElementById('my_context').value
-  // })
-  // .then(function(){
-  //   console.log("Document successfully written!");
-  // })
-  // .catch(function(error) {
-  //   console.log("Error Writing document:", error);
-  // });
-}
+})}
