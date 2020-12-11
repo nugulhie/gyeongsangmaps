@@ -424,59 +424,6 @@ db.collection("cafes").get().then((querySnapshot) => {
           infoW.setContent('<'+doc.data().title+'>'+"마커를 찾았습니다.");
           
           infoW.open(map);
-
-  //       const mark1 = { lat: getLantitude, lng: getLongitude };
-  //       const iconBase ="/img/booot.png";
-  //       var contentString = 
-  //       //팝업 html태그
-  //       '<div id="content">' +
-  //       '<div id="siteNotice">' +
-  //       "</div>" +
-  //       '<div id= "bodyContent">'+
-  //       '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
-  //       '<h4 id="subheading">'+ explain + "</h4>" +
-  //       '<a href="#">자세히 보기 </a></br>'+
-  //       '<button onclick = "addtext()">추가하기</button>' + 
-  //       "</div>" + 
-  //       "<br>" ;
-  //       contentString += '<div id="bodycomment">';
-  //       for(var i = 0 ; i < arr.length ; i++){
-  //         contentString = contentString + "<p>" + "<b>" + arr[i].id + "</b>" +": " + arr[i].comment + "</p>";
-  //       }
-  //       contentString += "</div>";
-  //       contentString += 
-  //       '<textarea id="w3review" name="w3review" rows="1" cols="30"></textarea><br>' + 
-  //       '<div id="center">'+
-  //       '<button id="buttondesign" onclick="submitComment()">댓글 달기</button>'+
-  //       '</div>'+
-  //       '</div>';
-
-  //       const infowindow = new google.maps.InfoWindow({
-  //         content: contentString,
-  //       });
-        
-  //       const marker = new google.maps.Marker({
-  //         position: mark1,
-  //         map,
-  //         title: title,
-  //         icon : iconBase
-  //       });
-  //       //addMarker(latLng)
-  //       marker.addListener("click", (event) => {
-  //         deleteMarkers();
-  //             if(temp_infowindow)
-  //                  temp_infowindow.close();
-  //         infowindow.open(map, marker);
-  //         loc = event.latLng;
-  //         temp_infowindow = infowindow;
-  //       });
-        
-
-  // // This event listener will call addMarker() when the map is clicked.
-  // map.addListener("click", (event) => {
-  //   addMarker(event.latLng);
-  //   loc = event.latLng
-  // });
     }
   });
 });
