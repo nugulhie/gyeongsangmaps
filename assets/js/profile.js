@@ -30,7 +30,7 @@ if(user){ //로그인 된 상태
   var current_college = document.getElementById('my_college');
   var current_context = document.getElementById('my_context');
 
-  user_email.innerHTML = user.email
+  // user_email.innerHTML = user.email
 
   // 파이어베이스에서 userData collection의 user.uid가 일치하는 문서를 찾아 그 정보를 반환한다.
   // Use User.getToken() instead. 권장사항

@@ -211,7 +211,7 @@ function updateMap() {
         '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
         '<h4 id="subheading">'+ explain + "</h4>" +
         '<div id="modifydiv"><button id="modifybt" onclick = "addtext()">추가하기</button></div>' + 
-        '<a href="/com?'+'puttitle='+doc.data().title+'"'+ 'id="morecontent">자세히 보기 </a></br>'+
+        '<a href="/com?latitude='+latitude+'&longitude='+longitude+'"'+'id="morecontent">자세히 보기 </a></br>'+
         "</div>" + 
         "<br>" ;
         contentString += '<div id="bodycomment">';
