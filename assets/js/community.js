@@ -49,54 +49,51 @@
 
 $(document).ready(function(){
     const base = firebase.firestore();
-    base.collection("mapData").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            var name = doc.data().name;
-            var title= doc.data().title;
-            var explain = doc.data().explain;
-            var latitude = doc.data().geopoint.latitude;
-            var longitude = doc.data().geopoint.longitude;
-            var time = doc.data().time;
-            var times = doc.data().time.toDate();
-            var comment = doc.data().comments;
 
-            var time2 = moment(times).format("YYYY-MM-DD HH:mm:ss"); // 이 형태로 format 하여 날짜 받아옴.
-            //console.log(`${doc.id} => ${doc.data()}`);
-            console.log(name);
-            console.log(title);
-            console.log(explain);
-            console.log(latitude);
-            console.log(longitude);
-            console.log(time);
-            console.log(time.toDate());
-            
-            console.log(comment);
-            console.log(time2);
-
-            //리스트 생성
-            //먼저 comment의 제목과 시간을 담는다.
+     base.collection("cafes").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        var id = doc.data().id;
+        var title= doc.data().title;
+        var explain = doc.data().explain;
+        var latitude = doc.data().geopoint.latitude;
+        var longitude = doc.data().geopoint.longitude;
+        var times = doc.data().time.toDate();
+        var realtime = moment(times).format("YYYY-MM-DD HH:mm:ss");
             const comment_title = document.createElement('a');
-            //comment_title.className = "m-r-10";
+            comment_title.href = "/main?latitude="+latitude+"&longitude="+longitude;
+            comment_title.className = "m-r-10";
             comment_title.style = "font-size: 160%";
             comment_title.classList.add("comment-title");
             
-            comment_title.innerText = title;
+            comment_title.innerHTML = title;
 
             const comment_time = document.createElement('small');
-            comment_time.className = "float-right text-muted"
-            //comment_time.classList.add("float-right text-muted");
-            comment_time.innerText = time2;
+            // comment_time.className = "float-right text-muted"
+            // comment_time.classList.add("float-right text-muted");
+            comment_time.innerText = realtime;
+            comment_time.style.float='right';
+            comment_time.style.fontSize ='9px';
+            comment_time.style.color = 'grey';
+
+            const comment_geopoint = document.createElement('small');
+            comment_geopoint.innerHTML = "위도 : "+latitude + " 경도 : "+ longitude;
+            comment_geopoint.style.float='right';
+            comment_geopoint.style.fontSize ='9px';
+            comment_geopoint.style.color = 'grey';
+            
+            const comment_explain = document.createElement('p');
+            comment_explain.innerHTML = explain
+            comment_explain.className = "msg";
 
             const comment_head = document.createElement('div');
-            //comment_head.classList.add("media-heading");
-            //comment_head.className = "media-heading";
+            comment_head.classList.add("media-heading");
+            comment_head.className = "media-heading";
             comment_head.appendChild(comment_title);
-            comment_head.appendChild(comment_time);
+            comment_head.appendChild(comment_time)
 
             const comment_row = document.createElement('div');
-            //comment_row.classList.add("msg");
-            //comment_row.className = "msg";
-            comment_row.innerText = explain;
+            comment_row.appendChild(comment_geopoint);
+            comment_row.appendChild(comment_explain);
 
             const comment_list = document.createElement('li');
             comment_list.classList.add("list-group-item");
@@ -126,3 +123,19 @@ function searchsubmit(){
       }
     }
 };
+
+// $(document).ready(function(){
+//   const base = firebase.firestore();
+//   base.collection("cafes").get().then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       var name = doc.data().name;
+//       var title= doc.data().title;
+//       var arr = doc.data().comments;
+//       var latitude = doc.data().geopoint.latitude;
+//       var longitude = doc.data().geopoint.longitude;
+
+      
+//       const mark1 = { lat: latitude, lng: longitude };
+//     });
+//   });
+// });

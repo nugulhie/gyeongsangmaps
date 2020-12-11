@@ -51,9 +51,6 @@ let map;
 let markers = [];
 
 function initMap() {
-  
-  
-  
   console.log(initMap);
   const university = { lat: 35.154, lng: 128.098 };
   const imageBounds = {
@@ -93,6 +90,7 @@ function initZoomControl(map) {
   document.querySelector(".zoom-control-in").onclick = function () {
     map.setZoom(map.getZoom() + 1);
   };
+
 
   document.querySelector(".zoom-control-out").onclick = function () {
     map.setZoom(map.getZoom() - 1);
@@ -163,13 +161,15 @@ function exitFullscreen() {
 
 function onClickSubmit() { 
   uid = auth.currentUser.uid;
+  let nowtime = new Date();
   console.log(loc.lng());
   console.log(loc.lat());
   db.collection("cafes").add({ 
        title: document.getElementById('activityTitle').value, 
-      name: document.getElementById('activityDescription').value, 
+      explain: document.getElementById('activityDescription').value, 
       geopoint : new firebase.firestore.GeoPoint(loc.lat(), loc.lng()),
-      comments : new Array() 
+      comments : new Array(),
+      time: nowtime
     }).then(function() { 
     console.log("Document successfully wriiten!"); 
     temp_infowindow.close();
@@ -189,7 +189,7 @@ function updateMap() {
 //DB에서 값 받아오고 마커 넣어줌.
   db.collection("cafes").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-        var name = doc.data().name;
+        var explain = doc.data().explain;
         var title= doc.data().title;
         var arr = doc.data().comments;
         var latitude = doc.data().geopoint.latitude;
@@ -198,7 +198,7 @@ function updateMap() {
         console.log(latitude);
         console.log(longitude);
         console.log(title);
-        console.log(name);
+        console.log(explain);
         
         const mark1 = { lat: latitude, lng: longitude };
         const iconBase ="/img/booot.png";
@@ -209,7 +209,7 @@ function updateMap() {
         "</div>" +
         '<div id= "bodyContent">'+
         '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
-        '<h4 id="subheading">'+ name + "</h4>" +
+        '<h4 id="subheading">'+ explain + "</h4>" +
         '<a href="#">자세히 보기 </a></br>'+
         '<button onclick = "addtext()">추가하기</button>' + 
         "</div>" + 
@@ -386,5 +386,98 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
 }
+
+
+
+ window.onload = function()
+ {
+  var value = new Array();
+  var url = unescape(location.href);
+  var pm  = url.split('?');
+  var getLantitude
+  var getLongitude
+  var count =0;
+  var params   = pm[1].split('&');
+  for( var i=0; i<params.length; i++ )
+  {
+   var param = params[i].split('=');
+  value[count]=param[1];
+  count++;
+  
+}
+  getLantitude = value[0];
+  getLongitude = value[1];
+  console.log(getLantitude, getLongitude);
+if(param[0]!=null){
+  $('input[id="Slide0"]').prop('checked', false);
+  $('input[id="Slide3"]').prop('checked', true);
+}
+db.collection("cafes").get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+      if(getLantitude == doc.data().geopoint.latitude && getLongitude == doc.data().geopoint.longitude) 
+      {
+        console.log('find success'+doc.data().title+doc.data().explain);
+
+
+  //       const mark1 = { lat: getLantitude, lng: getLongitude };
+  //       const iconBase ="/img/booot.png";
+  //       var contentString = 
+  //       //팝업 html태그
+  //       '<div id="content">' +
+  //       '<div id="siteNotice">' +
+  //       "</div>" +
+  //       '<div id= "bodyContent">'+
+  //       '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
+  //       '<h4 id="subheading">'+ explain + "</h4>" +
+  //       '<a href="#">자세히 보기 </a></br>'+
+  //       '<button onclick = "addtext()">추가하기</button>' + 
+  //       "</div>" + 
+  //       "<br>" ;
+  //       contentString += '<div id="bodycomment">';
+  //       for(var i = 0 ; i < arr.length ; i++){
+  //         contentString = contentString + "<p>" + "<b>" + arr[i].id + "</b>" +": " + arr[i].comment + "</p>";
+  //       }
+  //       contentString += "</div>";
+  //       contentString += 
+  //       '<textarea id="w3review" name="w3review" rows="1" cols="30"></textarea><br>' + 
+  //       '<div id="center">'+
+  //       '<button id="buttondesign" onclick="submitComment()">댓글 달기</button>'+
+  //       '</div>'+
+  //       '</div>';
+
+  //       const infowindow = new google.maps.InfoWindow({
+  //         content: contentString,
+  //       });
+        
+  //       const marker = new google.maps.Marker({
+  //         position: mark1,
+  //         map,
+  //         title: title,
+  //         icon : iconBase
+  //       });
+  //       //addMarker(latLng)
+  //       marker.addListener("click", (event) => {
+  //         deleteMarkers();
+  //             if(temp_infowindow)
+  //                  temp_infowindow.close();
+  //         infowindow.open(map, marker);
+  //         loc = event.latLng;
+  //         temp_infowindow = infowindow;
+  //       });
+        
+
+  // // This event listener will call addMarker() when the map is clicked.
+  // map.addListener("click", (event) => {
+  //   addMarker(event.latLng);
+  //   loc = event.latLng
+  // });
+    }
+  });
+});
+//DB 끝
+
+};
+
+
 
 
