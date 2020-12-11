@@ -211,7 +211,7 @@ function updateMap() {
         '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
         '<h4 id="subheading">'+ name + "</h4>" +
         '<a href="#">자세히 보기 </a></br>'+
-        "<button>수정 하기</button>" + 
+        '<button onclick = "addtext()">추가하기</button>' + 
         "</div>" + 
         "<br>" ;
         contentString += '<div id="bodycomment">';
