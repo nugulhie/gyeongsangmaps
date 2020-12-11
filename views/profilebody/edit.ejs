@@ -21,10 +21,15 @@
                     <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap" id='current_name'>황혁주</h4>
                     <!-- <div class="text-muted"><small>언제들왔냐면2주전에</small></div> -->
                     <div class="mt-2">
-                      <button class="btn btn-primary" type="button">
+                      <!--<button class="btn btn-primary" type="button" name="upload" onclick="onclick=document.upload.file.click()">
                         <i class="fa fa-fw fa-camera"></i>
-                        <span>Change Photo</span>
-                      </button>
+                        <span>사진 업로드</span>
+                      </button>-->
+                      <form action="upload" id="uploadForm" method="post" enctype="multipart/form-data">
+                        <input type="file" class="file-select" name="photo" id="photo" style="display:none" accept="image/*"/>
+                      </form>
+                      <button class="btn btn-primary" id="fileButton" onclick="onclick=document.all.photo.click()">사진 업로드</button>
+                      <button class="btn btn-primary" id="submitPhoto">사진 등록</button> <!--사진 파이어스토어에 등록-->
                     </div>
                   </div>
                   <!-- <div class="text-center text-sm-right">
