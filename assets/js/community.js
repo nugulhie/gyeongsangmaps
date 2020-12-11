@@ -57,8 +57,8 @@ $(document).ready(function(){
         var explain = doc.data().explain;
         var latitude = doc.data().geopoint.latitude;
         var longitude = doc.data().geopoint.longitude;
-        var times = doc.data().time.toDate();
-        var realtime = moment(times).format("YYYY-MM-DD HH:mm:ss");
+        // var times = doc.data().time.toDate();
+        // var realtime = moment(times).format("YYYY-MM-DD HH:mm:ss");
             const comment_title = document.createElement('a');
             comment_title.href = "/main?latitude="+latitude+"&longitude="+longitude;
             comment_title.className = "m-r-10";
@@ -70,7 +70,7 @@ $(document).ready(function(){
             const comment_time = document.createElement('small');
             // comment_time.className = "float-right text-muted"
             // comment_time.classList.add("float-right text-muted");
-            comment_time.innerText = realtime;
+            comment_time.innerText = doc.data().time;
             comment_time.style.float='right';
             comment_time.style.fontSize ='9px';
             comment_time.style.color = 'grey';
