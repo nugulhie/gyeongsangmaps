@@ -411,12 +411,19 @@ if(param[0]!=null){
   $('input[id="Slide0"]').prop('checked', false);
   $('input[id="Slide3"]').prop('checked', true);
 }
+
+
 db.collection("cafes").get().then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
       if(getLantitude == doc.data().geopoint.latitude && getLongitude == doc.data().geopoint.longitude) 
       {
         console.log('find success'+doc.data().title+doc.data().explain);
-
+        const geogeo = {lat: doc.data().geopoint.latitude, lng: doc.data().geopoint.longitude};
+          infoW = new google.maps.InfoWindow();
+          infoW.setPosition(geogeo);
+          infoW.setContent('<'+doc.data().title+'>'+"마커를 찾았습니다.");
+          
+          infoW.open(map);
 
   //       const mark1 = { lat: getLantitude, lng: getLongitude };
   //       const iconBase ="/img/booot.png";
