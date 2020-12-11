@@ -35,7 +35,8 @@ function addMarker(location) {
                 '<button onclick="onClickSubmit()" class="btn_type1">공유 하기</input>'+
             '</div>'+
         
-      '</div>'
+      '</div>',
+      maxWidth:600
     });
   
     markers.push(marker);

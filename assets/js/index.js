@@ -204,14 +204,20 @@ function updateMap() {
         const iconBase ="/img/booot.png";
         var contentString = 
         //팝업 html태그
-        '<div id="content">' +
+        '<div class="myinfowindow" id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
         '<div id= "bodyContent">'+
         '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
+<<<<<<< HEAD
         '<h4 id="subheading">'+ explain + "</h4>" +
         '<a href="#">자세히 보기 </a></br>'+
         '<button onclick = "addtext()">추가하기</button>' + 
+=======
+        '<h4 id="subheading">'+ name + "</h4>" +
+        '<div id="modifydiv"><button id="modifybt" onclick = "addtext()">추가하기</button></div>' + 
+        '<a href="#" id="morecontent">자세히 보기 </a></br>'+
+>>>>>>> 2f0909b46d4063b4b2078f05b58b792889164be6
         "</div>" + 
         "<br>" ;
         contentString += '<div id="bodycomment">';
@@ -220,7 +226,7 @@ function updateMap() {
         }
         contentString += "</div>";
         contentString += 
-        '<textarea id="w3review" name="w3review" rows="1" cols="30"></textarea><br>' + 
+        '<br><textarea id="w3review" name="w3review" rows="1" cols="30"></textarea><br>' + 
         '<div id="center">'+
         '<button id="buttondesign" onclick="submitComment()">댓글 달기</button>'+
         '</div>'+
@@ -228,6 +234,8 @@ function updateMap() {
 
         const infowindow = new google.maps.InfoWindow({
           content: contentString,
+          maxWidth:800,
+
         });
         
         const marker = new google.maps.Marker({
@@ -257,9 +265,6 @@ function updateMap() {
   });
 
 }
-
-
-
 
 function submitComment(){
   uid = auth.currentUser.uid;

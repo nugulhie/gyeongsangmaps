@@ -1,5 +1,4 @@
 
-
 /* Reset */
 html,body,h1,h2,h3,h4,h5,h6,div,p,blockquote,pre,code,address,ul,ol,li,menu,nav,section,article,aside,
 dl,dt,dd,table,thead,tbody,tfoot,label,caption,th,form,fieldset,legend,hr,input,button,textarea,object,figure,figcaption {margin:0;padding:0;}
@@ -41,7 +40,8 @@ input:focus { border: 1px solid #727272;}
 
 
 /*popup*/
-.popup{padding: 0 20px; width:20vw; height:40vh;background-color: #fff;}  
+.popup{padding: 0 20px; width:25vw; height:60vh;background-color: #fff;
+font-family: 'Nanum Gothic',sans-serif;}  
 
 
 .popup .h1 {margin-bottom: 10px; padding-top: 20px; font-size: 45px; color: black; font-weight: bold;}
