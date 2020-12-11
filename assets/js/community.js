@@ -79,6 +79,7 @@ $(document).ready(function(){
             //comment_title.className = "m-r-10";
             comment_title.style = "font-size: 160%";
             comment_title.classList.add("comment-title");
+            
             comment_title.innerText = title;
 
             const comment_time = document.createElement('small');
@@ -103,9 +104,25 @@ $(document).ready(function(){
             comment_list.appendChild(comment_row);
 
             document.getElementById('comment-box').appendChild(comment_list);
-
-            //document.getElementById('comment-box').appendChild(comment_list);
             
         });
     });
 });
+
+function searchsubmit(){
+    var input = document.getElementById("searchView");
+    var filter, ul, li, a, i, txtValue;
+    ul = document.getElementById("comment-box");
+    li = ul.getElementsByTagName('li');
+  
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.indexOf(input.value) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+};

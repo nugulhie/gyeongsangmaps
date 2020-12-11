@@ -5,7 +5,7 @@
             <div class="col-lg-12">                
                <div class="col-lg-5 col-md-4 col-6">
                     <div class="input-group search">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" id="searchView" class="form-control" placeholder="Search..." onkeyup="searchsubmit()">
                         <span class="input-group-addon">
                             <i class="zmdi zmdi-search"></i>
                         </span>
@@ -13,35 +13,35 @@
                 </div>                                                     
             </div>           
         </div>        
-        <div class="row clearfix">
+        <div class="row clearfix" style="height:100%; border: 1px solid #ced4da;">
             <div class="col-md-12 col-lg-12 col-xl-12">
-                <ul class="mail_list list-group list-unstyled">
+                <ul class="mail_list list-group list-unstyled" id="comment-box">
                     <li class="list-group-item">
-                        <div class="media">
-                            <div class="pull-left">                                
-                                <div class="controls">
-                                    <a href="javascript:void(0);" class="favourite text-muted hidden-sm-down" data-toggle="active"><i class="zmdi zmdi-star-outline"></i></a>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <div class="media-heading">
-                                    <a href="mail-single.html" class="m-r-10" style="font-size: 160%;">이거지 ㄹㅇ ㅋㅋ</a>
-                                    <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">11:11PM</time><i class="zmdi zmdi-attachment-alt"></i> </small>
-                                </div>
-                               <a href="main" class="gallerys" style="text-decoration: none; color: grey;"><p class="msg">지리고 오지고 렛잇고 인정따리 인정따</p></a> 
-                            </div>
-                        </div>
+                        <a href="mail-single.html" class="m-r-10" style="font-size: 160%;text-decoration: none;" id="content-title" >이거지 ㄹㅇ ㅋㅋ</a>
+                        <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">11:11PM</time><i class="zmdi zmdi-attachment-alt"></i> </small>
                     </li>
                 </ul>
-                    <ul class="pagination pagination-primary m-b-0">
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
-                    </ul>
             </div>
         </div>
     </div>
 </section>
  </div>
+<script>
+    function searchsubmit(){
+    var input = document.getElementById("searchView");
+    var ul, li, a, i, txtValue;
+    ul = document.getElementById("comment-box");
+    li = ul.getElementsByTagName('li');
+  
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName('a')[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.indexOf(input.value) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+};
+</script>
