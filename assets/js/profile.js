@@ -66,6 +66,23 @@ if(user){ //로그인 된 상태
   }
 });
 
+/**
+// real-time listener
+db.collection('users').onSnapshot(snapshot => {
+  let changes = snapshot.docChanges();
+  console.log(changes);
+  changes.forEach(change => {
+      console.log(change.doc.data());
+      if(change.type == 'added'){
+          renderCafe(change.doc);
+      } else if (change.type == 'removed'){
+          let li = cafeList.querySelector('[data-id=' + change.doc.id + ']');
+          cafeList.removeChild(li);
+      }
+  });
+});
+ */
+
 // edit.ejs에서 저장 버튼 누르면 실행
 // 기존 문서 없으면 실행안됨?
 function update(){
@@ -113,5 +130,66 @@ function update(){
   //   console.log("Error setting document:", error);
   //   console.log(my_name, my_college, my_context);
   // });
+  
   // 회원가입할때 프로필을 미리 작성하는 페이지가 있으면 좋겠음.
 }
+
+//Upload Profile Picture 
+//Altered code from: Firebase Youtube Channel. 
+
+//Get Elements
+var fileButton = document.getElementById('fileButton');
+var submitPhoto = document.getElementById('submitPhoto');
+const storage = firebase.storage();
+
+//Listen for file 
+submitPhoto.addEventListener('change', function(e){
+  //Get File
+  var file = e.target.files[0];
+
+  //Create a Storage Ref
+  var user = firebase.auth().currentUser;
+  var storageRef = storage.ref(user.uid + file + file.name);
+
+  //Upload file
+  var task = storageRef.put(file);
+  
+  //Update Progress Bar 
+  task.on('state_changed', 
+  function progress(snapshot){
+    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) *100;
+    uploader.value = percentage;
+    //if percentage = 100
+    //$(".overlay").hide();         
+  },
+  function error(err){
+  },
+  function complete(){
+  }
+  );           
+});
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   const storageRef = firebase.storage().ref();
+//   let selectedFile;
+
+//   // File 선택
+//   document.querySelector('.file-select').addEventListener('change', e => {
+//       selectedFile = e.target.files[0];
+//   });
+
+//   // File 업로드
+//   document.querySelector('.file-submit').addEventListener('click', () => {
+//     storageRef
+//       .child(`images/${selectedFile.name}`)
+//       .put(selectedFile)
+//       .on('state_changed', snapshot => {
+//           console.log(snapshot)
+//         }, error => {
+//           console.log(error);
+//         }, () => {
+//           console.log('성공');
+//         }
+//       );
+//   });
+// });
