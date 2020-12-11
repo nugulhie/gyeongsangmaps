@@ -210,13 +210,8 @@ function updateMap() {
         '<div id= "bodyContent">'+
         '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
         '<h4 id="subheading">'+ name + "</h4>" +
-<<<<<<< HEAD
-        "<div id='modifydiv'><button id='modifybt'>수정 하기</button></div>"+
-        '<a href="#" id="morecontent">자세히 보기 </a></br>'+
-=======
         '<div id="modifydiv"><button id="modifybt" onclick = "addtext()">추가하기</button></div>' + 
         '<a href="#" id="morecontent">자세히 보기 </a></br>'+
->>>>>>> be3755fe6d25074ef1e2cf4cc798475bac963256
         "</div>" + 
         "<br>" ;
         contentString += '<div id="bodycomment">';
