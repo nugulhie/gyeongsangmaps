@@ -3,10 +3,10 @@
     font-family: 'Nanum Gothic',sans-serif;
 }
 
-#content{padding: 0 5px; width:auto; height:auto;background-color: #fff;}  
+#content{padding: 0 5px; width:auto; height:auto;background-color: #fff; max-width: 200px;}  
 
 
-#modifydiv{display: block; left: 230px;width: 100%;border-bottom: 1px solid #e8e8e8; padding-bottom: 5px;}
+#modifydiv{display: block; left: 230px;width: 100%;border-bottom: 1px solid #e8e8e8; padding-bottom: 5px; max-width: 200px;}
 #modifydiv>#modifybt{
     float: right; 
     margin-top: 2%;
@@ -29,7 +29,7 @@
     font-size: 0.7rem;
 }
 
-#firstHeading {font-size: 25px; color: black; font-weight: bold;border-bottom: 1px solid #e8e8e8 ;}
+#firstHeading {font-size: 18px; color: black; font-weight: bold;border-bottom: 1px solid #e8e8e8 ;}
 #subheading {margin-top: 0; font-size: 8px;  font-weight: 500;}
 
 #center { text-align: center; margin-top: 2%;}
