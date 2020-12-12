@@ -1,23 +1,22 @@
 
-<div class="container">
+<div class="container" >
 <div class="row flex-lg-nowrap">
   <div class="col">
     <div class="row">
       <div class="col mb-3">
         <div class="card">
           <div class="card-body">
-            <div class="e-profile">
+            <div class="e-profile" id="editProfile">
               <div class="row">
                 <div class="col-12 col-sm-auto mb-3">
                   <div class="mx-auto" style="width: 140px;">
                     <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                      <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">사진크기표시</span>
+                      <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;" >사진크기표시</span>
                     </div>
                   </div>
                 </div>
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
-                    <div id="current_name"> </div>
                     <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap" id='current_name'>황혁주</h4>
                     <!-- <div class="text-muted"><small>언제들왔냐면2주전에</small></div> -->
                     <div class="mt-2">
@@ -28,8 +27,17 @@
                       <form action="upload" id="uploadForm" method="post" enctype="multipart/form-data">
                         <input type="file" class="file-select" name="photo" id="photo" style="display:none" accept="image/*"/>
                       </form>
-                      <button class="btn btn-primary" id="fileButton" onclick="onclick=document.all.photo.click()">사진 업로드</button>
-                      <button class="btn btn-primary" id="submitPhoto">사진 등록</button> <!--사진 파이어스토어에 등록-->
+                      <button class="btn btn-primary" onclick="onclick=document.all.photo.click()">사진 선택</button>
+                      <button class="btn btn-primary" id="submit">사진 등록</button>
+                    </div>
+                    <div class="mt-2">
+                      <!-- <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="uploader"
+                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                          40% Complete (success)
+                        </div>
+                      </div> -->
+                      <progress value="20" max="100"></progress>
                     </div>
                   </div>
                   <!-- <div class="text-center text-sm-right">
