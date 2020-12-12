@@ -26,9 +26,9 @@ if(user){ //로그인 된 상태
   var user_age= document.getElementById('user_age');
   var user_context= document.getElementById('user_context');
 
-  var current_name = document.getElementById('my_name');
-  var current_college = document.getElementById('my_college');
-  var current_context = document.getElementById('my_context');
+  // var current_name = document.getElementById('my_name');
+  // var current_college = document.getElementById('my_college');
+  // var current_context = document.getElementById('my_context');
 
   user_email.innerHTML = user.email
 
@@ -45,12 +45,12 @@ if(user){ //로그인 된 상태
       user_context.innerHTML = doc.get("context");
           
       document.getElementById('card_profile').innerHTML = doc.get("context");
-      // 카드 텍스트에 프로필 메시지 띄움
-      // profile.ejs에서는 적용되지만, edit.ejs로 넘어가면 적용안됨
+      // // 카드 텍스트에 프로필 메시지 띄움
+      // // profile.ejs에서는 적용되지만, edit.ejs로 넘어가면 적용안됨
 
-      current_name.value = doc.get("name");
-      current_college.value = doc.get("college");
-      current_context.value = doc.get("context"); // 안됨
+      // current_name.value = doc.get("name");
+      // current_college.value = doc.get("college");
+      // current_context.value = doc.get("context"); // 안됨
       
     }else{
       // doc.data() will be undefined in this case
@@ -65,6 +65,50 @@ if(user){ //로그인 된 상태
     console.log(user);
   }
 });
+
+$("/myprofile?page=edit").ready(getCardProfile());
+
+function getCardProfile(){
+  var current = auth.currentUser;
+  var userRef = db.collection('users').doc(current.uid);
+  
+  userRef.get().then(function(doc) {
+    if (doc.exists){
+      document.getElementById('card_profile').innerHTML = doc.get("context");
+    }
+    else{
+      console.log("No such document!");
+    }
+  })
+  .catch(function(error) {
+    console.log("Error Writing document:", error);
+  });
+  // 카드 텍스트에 프로필 메시지 띄움
+  // profile.ejs에서는 적용되지만, edit.ejs로 넘어가면 적용안됨
+}
+
+function getDefault(){ // edit.ejs의 인풋 태그의 기본값 넘기는 함수
+  var current = auth.currentUser;
+  var userRef = db.collection('users').doc(current.uid);
+
+  var current_name = document.getElementById('my_name');
+  var current_college = document.getElementById('my_college');
+  var current_context = document.getElementById('my_context');
+  
+  userRef.get().then(function(doc) {
+    if (doc.exists){
+      current_name.value = doc.get("name");
+      current_college.value = doc.get("college");
+      current_context.value = doc.get("context");
+    }
+    else{
+      console.log("No such document!");
+    }
+  })
+  .catch(function(error) {
+    console.log("Error Writing document:", error);
+  });
+}
 
 /**
 // real-time listener
@@ -138,12 +182,12 @@ function update(){
 //Altered code from: Firebase Youtube Channel. 
 
 //Get Elements
-var fileButton = document.getElementById('fileButton');
-var submitPhoto = document.getElementById('submitPhoto');
+var photoUpload = document.getElementById('photoUpload');
+var uploader = document.getElementById('uploader');
 const storage = firebase.storage();
 
 //Listen for file 
-submitPhoto.addEventListener('change', function(e){
+photoUpload.addEventListener('change', function(e){
   //Get File
   var file = e.target.files[0];
 
