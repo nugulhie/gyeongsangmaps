@@ -157,8 +157,48 @@ function exitFullscreen() {
   }
 }
 
+function setSubmitInfo(data){ // 마커 찍은 문서의 값을 넘겨주는 함수
+  var current = auth.currentUser;
+  var userRef = db.collection('users').doc(current.uid);
+  console.log(userRef);
 
+  userRef.get().then(function() {
+    return userRef.update({ // users uid로 넘긴다.
+      contents: firebase.firestore.contents.arrayUnion(data)
+    })
+    .then(function(){
+      console.log("Document successfully written in:", current.uid, data);
+    })
+    .catch(function(error) {
+      console.log("Error Writing document:", error);
+    });
+  })
+}
 
+function onClickSubmit() { 
+  uid = auth.currentUser.uid;
+  let nowtime = new Date();
+  var sass = document.getElementById('activityDescription').value;
+  console.log(loc.lng());
+  console.log(loc.lat());
+
+  db.collection("cafes").add({ 
+      title: document.getElementById('activityTitle').value, 
+      explain: firebase.firestore.FieldValue.arrayUnion(sass),
+      geopoint : new firebase.firestore.GeoPoint(loc.lat(), loc.lng()),
+      comments : new Array(),
+      time: nowtime
+    }).then(function(docRef) { 
+    console.log("Document successfully wriiten!");
+    console.log("Document written with ID: ", docRef.id);
+    setSubmitInfo(docRef.id);
+    temp_infowindow.close();
+  }) 
+  .catch(function(error) {
+    console.error("Error writing document: ", error);
+  });
+}
+/*
 function onClickSubmit() { 
   uid = auth.currentUser.uid;
   let nowtime = new Date();
@@ -174,13 +214,12 @@ function onClickSubmit() {
     }).then(function() { 
     console.log("Document successfully wriiten!"); 
     temp_infowindow.close();
-}) 
-.catch(function(error) {
-  console.error("Error writing document: ", error);
-});
-  
+  }) 
+  .catch(function(error) {
+    console.error("Error writing document: ", error);
+  });
 }
-
+*/
 
 function updateMap() {
   console.log("updateMap")
@@ -221,7 +260,7 @@ function updateMap() {
         '<a href="/com?latitude='+latitude+'&longitude='+longitude+'"'+'id="morecontent">자세히 보기 </a></div>'
         contentString += '<div id="bodycomment">';
         for(var i = 0 ; i < arr.length ; i++){
-          contentString = contentString + "<h6>" +arr[i].id+": " +arr[i].comment+ "</h6>";
+          contentString = contentString + "<p>" + "<b>" + arr[i].id + "</b>" +": " + arr[i].comment + "</p>";
         }
         contentString += "</div>";
         contentString += 
