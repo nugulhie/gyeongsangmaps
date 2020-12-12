@@ -187,3 +187,9 @@
   box-sizing: border-box;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, .15)
 }
+
+#user-profile-2{
+    padding:5%;
+    border: solid 1px #e8e8e8;
+    border-style: ridge;
+}

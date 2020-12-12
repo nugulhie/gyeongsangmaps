@@ -217,10 +217,8 @@ function updateMap() {
         console.log(explain[z]);
         }
         contentString +=
-        "</h4>"+'<div id="modifydiv"><button id="modifybt" onclick = "addtext()">추가하기</button></div>' + 
-        '<a href="/com?latitude='+latitude+'&longitude='+longitude+'"'+'id="morecontent">자세히 보기 </a></br>'+
-        "</div>" + 
-        "<br>" ;
+        "</h4>"+'<div id="modifydiv"><button id="modifybt" onclick = "addtext()">추가하기</button>' + 
+        '<a href="/com?latitude='+latitude+'&longitude='+longitude+'"'+'id="morecontent">자세히 보기 </a></div>'
         contentString += '<div id="bodycomment">';
         for(var i = 0 ; i < arr.length ; i++){
           contentString = contentString + "<p>" + "<b>" + arr[i].id + "</b>" +": " + arr[i].comment + "</p>";
@@ -431,6 +429,7 @@ db.collection("cafes").get().then((querySnapshot) => {
           infoW.setContent('<'+doc.data().title+'>'+"마커를 찾았습니다.");
           
           infoW.open(map);
+          
     }
   });
 });
