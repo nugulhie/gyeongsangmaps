@@ -208,9 +208,15 @@ function updateMap() {
         '<div id="siteNotice">' +
         "</div>" +
         '<div id= "bodyContent">'+
-        '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>' +
-        '<h4 id="subheading">'+ explain + "</h4>" +
-        '<div id="modifydiv"><button id="modifybt" onclick = "addtext()">추가하기</button></div>' + 
+        '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>'+
+        '<h4 id="subheading">' ;
+        
+        for(var z = 0; z < explain.length;z++){
+        contentString += '<h4>'+ explain[z]+'</h4>' ;
+        console.log(explain[z]);
+        }
+        contentString +=
+        "</h4>"+'<div id="modifydiv"><button id="modifybt" onclick = "addtext()">추가하기</button></div>' + 
         '<a href="/com?latitude='+latitude+'&longitude='+longitude+'"'+'id="morecontent">자세히 보기 </a></br>'+
         "</div>" + 
         "<br>" ;
