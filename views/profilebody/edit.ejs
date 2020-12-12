@@ -28,8 +28,15 @@
                       <form action="upload" id="uploadForm" method="post" enctype="multipart/form-data">
                         <input type="file" class="file-select" name="photo" id="photo" style="display:none" accept="image/*"/>
                       </form>
-                      <button class="btn btn-primary" id="fileButton" onclick="onclick=document.all.photo.click()">사진 업로드</button>
-                      <button class="btn btn-primary" id="submitPhoto">사진 등록</button> <!--사진 파이어스토어에 등록-->
+                      <button class="btn btn-primary" id="photoUpload" onclick="onclick=document.all.photo.click()">사진 업로드</button>
+                      <br>
+                      <!-- <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" id="uploader"
+                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                          40% Complete (success)
+                        </div>
+                      </div> -->
+                      <progress value="0" max="100"></progress>
                     </div>
                   </div>
                   <!-- <div class="text-center text-sm-right">
