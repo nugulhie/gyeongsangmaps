@@ -6,17 +6,15 @@
 #content{padding: 0 5px; width:auto; height:auto;background-color: #fff; max-width: 200px;}  
 
 
-#modifydiv{display: block; left: 230px;width: 100%;border-bottom: 1px solid #e8e8e8; padding-bottom: 5px; max-width: 200px;}
+#modifydiv{display: block; left: 230px;width: 100%;border-bottom: 1px solid #e8e8e8; margin-bottom: 7%; max-width: 200px;}
 #modifydiv>#modifybt{
     float: right; 
-    margin-top: 2%;
     margin-left:2%;
     color: #007bff;
     background-color:rgba(0,0,0,0);
 }
 #modifydiv>#morecontent{
     float: right; 
-    margin-top: 2%;
 }
 #bodycomment{
     border: solid 1px #e8e8e8;
@@ -27,6 +25,8 @@
 }
 #bodycomment>p{
     font-size: 0.7rem;
+    margin: 0 !important;
+    padding-top: 1% !important;
 }
 
 #firstHeading {font-size: 18px; color: black; font-weight: bold;border-bottom: 1px solid #e8e8e8 ;}

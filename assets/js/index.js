@@ -221,7 +221,7 @@ function updateMap() {
         '<a href="/com?latitude='+latitude+'&longitude='+longitude+'"'+'id="morecontent">자세히 보기 </a></div>'
         contentString += '<div id="bodycomment">';
         for(var i = 0 ; i < arr.length ; i++){
-          contentString = contentString + "<p>" + "<b>" + arr[i].id + "</b>" +": " + arr[i].comment + "</p>";
+          contentString = contentString + "<h6>" +arr[i].id+": " +arr[i].comment+ "</h6>";
         }
         contentString += "</div>";
         contentString += 
