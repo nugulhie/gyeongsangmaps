@@ -1,14 +1,14 @@
 function addtext(){
     var type = document.getElementById("subheading");
     var eleCount = type.childElementCount; 
-
-    if(eleCount > 1){
+    var countingExcute = 0;
+    if(eleCount >= 1){
         console.log("추가창은 1개만 가능합니다.");
     }
     else{
 
         const submitBtn = document.createElement("p");
-        submitBtn.innerHTML='<button type=button onclick="subtn()">'+
+        submitBtn.innerHTML='<button type=button id = "subsbtn" onclick="subtn()">'+
         '저장하기'+'</button>';
 
         const mak = document.createElement("input");
@@ -20,6 +20,8 @@ function addtext(){
         re.appendChild(mak);
         re.appendChild(submitBtn);
         type.appendChild(re);
+        countingExcute++;
+
     //text창 추가 메소드
     }   
     console.log(eleCount)
@@ -42,7 +44,7 @@ db.collection("cafes").where("geopoint", "==", new firebase.firestore.GeoPoint(l
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             
-            var my_map = {explain: document.getElementById('user_text').value}
+            var my_map = document.getElementById('user_text').value;
             
             console.log( document.getElementById('user_text').value);
 
@@ -55,6 +57,8 @@ db.collection("cafes").where("geopoint", "==", new firebase.firestore.GeoPoint(l
               document.getElementById('subheading').append(elem);
               document.getElementById('user_text').value = '';  
               count = count+1;
+              $( 'input' ).remove( '#user_text' );
+              $( 'button' ).remove( '#subsbtn' );
         });
     })
     .catch(function(error) {

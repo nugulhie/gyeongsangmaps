@@ -162,11 +162,12 @@ function exitFullscreen() {
 function onClickSubmit() { 
   uid = auth.currentUser.uid;
   let nowtime = new Date();
+  var sass = document.getElementById('activityDescription').value;
   console.log(loc.lng());
   console.log(loc.lat());
   db.collection("cafes").add({ 
        title: document.getElementById('activityTitle').value, 
-      explain: document.getElementById('activityDescription').value, 
+      explain: firebase.firestore.FieldValue.arrayUnion(sass),
       geopoint : new firebase.firestore.GeoPoint(loc.lat(), loc.lng()),
       comments : new Array(),
       time: nowtime
@@ -208,7 +209,7 @@ function updateMap() {
         '<div id="siteNotice">' +
         "</div>" +
         '<div id= "bodyContent">'+
-        '<h1 id="firstHeading" class="firstHeading">'+'<'+ title+'>' + '</h1>'+
+        '<h1 id="firstHeading" class="firstHeading">'+ title + '</h1>'+
         '<h4 id="subheading">' ;
         
         for(var z = 0; z < explain.length;z++){
