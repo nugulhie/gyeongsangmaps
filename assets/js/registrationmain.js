@@ -40,10 +40,10 @@ $(function() {
         console.log(UserData);
        
         //DB 유저의 정보를 저장
-        db.collection('user').doc(UserData.id).set({
+        db.collection('users').doc(UserData.id).set({
           name: UserData.name,
           email: UserData.email,
-          contents: " ",
+          contents: [],
           college: " ",
           context: " ",
           date: today
