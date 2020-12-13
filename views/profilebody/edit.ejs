@@ -25,10 +25,13 @@
                         <span>사진 업로드</span>
                       </button>-->
                       <form action="upload" id="uploadForm" method="post" enctype="multipart/form-data">
-                        <input type="file" class="file-select" name="photo" id="photo" style="display:none" accept="image/*"/>
+                        <input type="file" class="file-select" name="photo1" id="photo_select" style="display:none" accept="image/*"/>
                       </form>
-                      <button class="btn btn-primary" onclick="onclick=document.all.photo.click()">사진 선택</button>
-                      <button class="btn btn-primary" id="submit">사진 등록</button>
+                      <form action="upload" id="uploadForm" method="post" enctype="multipart/form-data">
+                        <input type="file" class="file-select" name="photo2" id="photo_submit1" style="display:none" accept="image/*"/>
+                      </form>
+                      <button class="btn btn-primary" onclick="onclick=document.all.photo1.click()">사진 선택</button>
+                      <button class="btn btn-primary" id="photo_submit">사진 등록</button>
                     </div>
                     <div class="mt-2">
                       <!-- <div class="progress">
