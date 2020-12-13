@@ -164,7 +164,7 @@ function setSubmitInfo(data){ // 마커 찍은 문서의 값을 넘겨주는 함
 
   userRef.get().then(function() {
     return userRef.update({ // users uid로 넘긴다.
-      contents: [data]
+      contents: firebase.firestore.FieldValue.arrayUnion(data)
     // contents: [data]
     })
     .then(function(){

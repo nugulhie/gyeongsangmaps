@@ -265,7 +265,7 @@ function update(){
          
          userdb.doc(userdd.uid).get().then(function(doc) {
                for(var i =0; i<doc.data().contents.length;i++){
-                 temp = doc.data().contents[0];
+                 temp = doc.data().contents[i];
                  console.log(temp);
                  
                  contentdb.doc(temp).get().then(function(doc) {
