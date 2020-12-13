@@ -1,4 +1,5 @@
 // Initialize Firebase
+
 var firebaseConfig = {
   apiKey: "AIzaSyDahWd_FZdoPEazahqR8aFgZvgWgWtZ_3U",
   authDomain: "gyeongsang-maps.firebaseapp.com",
@@ -13,6 +14,7 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const auth = firebase.auth();
+
 
 function initHome(user){
   var user_name = document.getElementById('user_name');
@@ -45,13 +47,14 @@ function initHome(user){
   });
 }
 
+
+
 function initEdit(user){
   var current_name = document.getElementById('current_name');
   var my_name = document.getElementById('my_name');
   var my_college= document.getElementById('my_college');
   var my_context= document.getElementById('my_context');
   console.log(current_name, my_name, my_college, my_context);
-
   // 파이어베이스에서 userData collection의 user.uid가 일치하는 문서를 찾아 그 정보를 반환한다.
   // Use User.getToken() instead. 권장사항
   db.collection('users').doc(user.uid).get().then(function(doc) {
@@ -78,8 +81,8 @@ auth.onAuthStateChanged(function(user){
   if(user){ //로그인 된 상태
     console.log(user);
     console.log("home YES!");
-
-    document.getElementById("home").addEventListener('load', initHome(user), false);
+    sa();
+    // document.getElementById("home").addEventListener('load', initHome(user), false);
 
   }else{//로그아웃 된 상태.
     console.log(user);
@@ -91,7 +94,7 @@ auth.onAuthStateChanged(function(user){
     console.log(user);
     console.log("editProfile YES!");
 
-    document.getElementById("editProfile").addEventListener('load', initEdit(user), false);
+    // document.getElementById("editProfile").addEventListener('load', initEdit(user), false);
 
   }else{//로그아웃 된 상태.
     console.log(user);
@@ -149,30 +152,30 @@ function update(){
   // 회원가입할때 프로필을 미리 작성하는 페이지가 있으면 좋겠음.
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const storageRef = firebase.storage().ref();
-  let selectedFile;
+// document.addEventListener('DOMContentLoaded', function () {
+//   const storageRef = firebase.storage().ref();
+//   let selectedFile;
 
-  // File 선택
-  document.querySelector('#photo').addEventListener('change', e => {
-      selectedFile = e.target.files[0];
-  });
+//   // File 선택
+//   document.querySelector('#photo').addEventListener('change', e => {
+//       selectedFile = e.target.files[0];
+//   });
 
-  // File 업로드
-  document.querySelector('#photo').addEventListener('click', () => {
-    storageRef
-      .child(`images/${selectedFile.name}`)
-      .put(selectedFile)
-      .on('state_changed', snapshot => {
-          console.log(snapshot)
-        }, error => {
-          console.log(error);
-        }, () => {
-          console.log('성공');
-        }
-        );
-  });
-});
+//   // File 업로드
+//   document.querySelector('#photo').addEventListener('click', () => {
+//     storageRef
+//       .child(`images/${selectedFile.name}`)
+//       .put(selectedFile)
+//       .on('state_changed', snapshot => {
+//           console.log(snapshot)
+//         }, error => {
+//           console.log(error);
+//         }, () => {
+//           console.log('성공');
+//         }
+//         );
+//   });
+// });
 
 
 // //Upload Profile Picture 
@@ -233,3 +236,96 @@ document.addEventListener('DOMContentLoaded', function () {
 //       );
 //   });
 // });
+
+    function searchsubmit(){
+    var input = document.getElementById("searchView");
+    var ul, li, a, i, txtValue;
+    ul = document.getElementById("comment-box");
+    li = ul.getElementsByTagName('li');
+  
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName('a')[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.indexOf(input.value) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+    
+};
+    function sa(){
+         var textarray = new Array();
+         var userdd = auth.currentUser;
+         var userdb = db.collection('users');
+         var contentdb = db.collection('cafes');
+         var temp;
+         console.log(userdd.uid);
+         
+         userdb.doc(userdd.uid).get().then(function(doc) {
+               for(var i =0; i<doc.data().contents.length;i++){
+                 temp = doc.data().contents[0];
+                 console.log(temp);
+                 
+                 contentdb.doc(temp).get().then(function(doc) {
+                    console.log(doc.data());
+                  var title= doc.data().title;
+                  var explain = doc.data().explain;
+                  var latitude = doc.data().geopoint.latitude;
+                  var longitude = doc.data().geopoint.longitude;
+
+      
+                  const comment_title = document.createElement('a');
+                  comment_title.href = "/main?latitude="+latitude+"&longitude="+longitude;
+                  comment_title.className = "m-r-10";
+                  comment_title.style = "font-size: 160%";
+                  comment_title.classList.add("comment-title");
+                  
+                  comment_title.innerHTML = title;
+      
+                  const comment_time = document.createElement('p');
+                  // comment_time.className = "float-right text-muted"
+                  // comment_time.classList.add("float-right text-muted");
+                  // comment_time.innerText = realtime;
+                  comment_time.style.float='right';
+                  comment_time.style.fontSize ='9px';
+                  comment_time.style.color = 'grey';
+      
+                  const comment_geopoint = document.createElement('small');
+                  comment_geopoint.innerHTML = "위도 : "+latitude + " 경도 : "+ longitude;
+                  comment_geopoint.style.float='right';
+                  comment_geopoint.style.fontSize ='9px';
+                  comment_geopoint.style.color = 'grey';
+                  comment_geopoint.id="geogeo";
+                  
+                  const comment_explain = document.createElement('p');
+                  comment_explain.innerHTML = explain
+                  comment_explain.className = "msg";
+      
+                  const comment_head = document.createElement('div');
+                  comment_head.classList.add("media-heading");
+                  comment_head.className = "media-heading";
+                  comment_head.appendChild(comment_title);
+                  comment_head.appendChild(comment_time)
+      
+                  const comment_row = document.createElement('div');
+                  comment_row.appendChild(comment_geopoint);
+                  comment_row.appendChild(comment_explain);
+      
+                  const comment_list = document.createElement('li');
+                  comment_list.classList.add("list-group-item");
+                  comment_list.appendChild(comment_head);
+                  comment_list.appendChild(comment_row);
+      
+                  document.getElementById('comment-box').appendChild(comment_list);
+                  console.log(comment_title);        
+                  
+              }).catch(function(error) {
+              });
+            
+          }
+          }).catch(function(error){});
+        }
+
+     

@@ -16,32 +16,14 @@
         <div class="row clearfix" style="height:100%; border: 1px solid #ced4da;">
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <ul class="mail_list list-group list-unstyled" id="comment-box">
-                    <li class="list-group-item">
-                        <a href="mail-single.html" class="m-r-10" style="font-size: 160%;text-decoration: none;" id="content-title" >이거지 ㄹㅇ ㅋㅋ</a>
-                        <small class="float-right text-muted"><time class="hidden-sm-down" datetime="2017">11:11PM</time><i class="zmdi zmdi-attachment-alt"></i> </small>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
  </div>
-<script>
-    function searchsubmit(){
-    var input = document.getElementById("searchView");
-    var ul, li, a, i, txtValue;
-    ul = document.getElementById("comment-box");
-    li = ul.getElementsByTagName('li');
-  
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < li.length; i++) {
-      a = li[i].getElementsByTagName('a')[0];
-      txtValue = a.textContent || a.innerText;
-      if (txtValue.indexOf(input.value) > -1) {
-        li[i].style.display = "";
-      } else {
-        li[i].style.display = "none";
-      }
-    }
-};
-</script>
+ <style>
+     #list-group-item{
+         border-bottom: solid 1px #e8e8e8;
+     }
+ </style>
