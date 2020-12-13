@@ -20,9 +20,9 @@ function initHome(user){
   var user_name = document.getElementById('user_name');
   var user_email= document.getElementById('user_email');
   var user_college= document.getElementById('user_college');
-  var user_age= document.getElementById('user_age');
+  var user_date= document.getElementById('user_date');
   var user_context= document.getElementById('user_context');
-  console.log(user_name, user_email, user_college, user_age, user_context);
+  console.log(user_name, user_email, user_college, user_date, user_context);
 
   user_email.innerHTML = user.email // 프로필에 정의(회원가입)된 이메일
 
@@ -32,8 +32,16 @@ function initHome(user){
     if (doc.exists) {
       console.log("Document data:", doc.data());
       console.log(doc.data());
+
+      var date = doc.get("date").toDate();
+      // var regDate = moment(date).format("YYYY-MM-DD HH:mm:ss"); // moment.js 불러와야함.
+      var regDate =
+        date.getFullYear() + '년 ' +
+        (date.getMonth() + 1) + '월 ' +
+        date.getDate() + '일';
+
       user_name.innerHTML = doc.get("name");
-      user_age.innerHTML = doc.get("age");
+      user_date.innerHTML = regDate // 가입날짜
       user_college.innerHTML = doc.get("college");
       // user_email.innerHTML = doc.get("email"); // 문서에 정의된 이메일
       user_context.innerHTML = doc.get("context");
@@ -43,7 +51,7 @@ function initHome(user){
     }
   }).catch(function(error) {
     console.log("Error getting document:", error);
-    console.log(user_name, user_age, user_college, user_email);
+    console.log(user_name, user_date, user_college, user_email);
   });
 }
 
@@ -82,7 +90,7 @@ auth.onAuthStateChanged(function(user){
     console.log(user);
     console.log("home YES!");
     sa();
-    // document.getElementById("home").addEventListener('load', initHome(user), false);
+    document.getElementById("home").addEventListener('load', initHome(user), false);
 
   }else{//로그아웃 된 상태.
     console.log(user);
@@ -94,7 +102,7 @@ auth.onAuthStateChanged(function(user){
     console.log(user);
     console.log("editProfile YES!");
 
-    // document.getElementById("editProfile").addEventListener('load', initEdit(user), false);
+    document.getElementById("editProfile").addEventListener('load', initEdit(user), false);
 
   }else{//로그아웃 된 상태.
     console.log(user);
@@ -112,7 +120,10 @@ function update(){
   var my_context = document.getElementById('my_context').value;
   console.log(my_name, my_college, my_context);
   
-  userRef.get().then(function() {
+  userRef.get().then(function(doc) {
+    if(doc.exists){
+      
+    }
     return userRef.update({
       name: document.getElementById('my_name').value,
       college: document.getElementById('my_college').value,
