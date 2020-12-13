@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const auth = firebase.auth();
-
+var storageRef = firebase.storage().ref();
 
 function initHome(user){
   var user_name = document.getElementById('user_name');
@@ -163,30 +163,38 @@ function update(){
   // 회원가입할때 프로필을 미리 작성하는 페이지가 있으면 좋겠음.
 }
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const storageRef = firebase.storage().ref();
-//   let selectedFile;
+document.addEventListener('DOMContentLoaded', function () {
+  //const storageRef = firebase.storage().ref();
+  let selectedFile;
 
-//   // File 선택
-//   document.querySelector('#photo').addEventListener('change', e => {
-//       selectedFile = e.target.files[0];
-//   });
+  // File 선택
 
-//   // File 업로드
-//   document.querySelector('#photo').addEventListener('click', () => {
-//     storageRef
-//       .child(`images/${selectedFile.name}`)
-//       .put(selectedFile)
-//       .on('state_changed', snapshot => {
-//           console.log(snapshot)
-//         }, error => {
-//           console.log(error);
-//         }, () => {
-//           console.log('성공');
-//         }
-//         );
-//   });
-// });
+  //var selectedFile;
+  var fileName;
+
+  document.querySelector('#photo_select').addEventListener('change', e => {
+      selectedFile = e.target.files[0];
+      console.log(selectedFile);
+      console.log(selectedFile.name);
+      fileName = selectedFile.name;
+  });
+
+  // File 업로드
+  document.querySelector('#photo_submit').addEventListener('click', () => {
+    storageRef
+      //.child(`images/${selectedFile.name}`)
+      .child("images/"+fileName)
+      .put(selectedFile)
+      .on('state_changed', snapshot => {
+          console.log(snapshot)
+        }, error => {
+          console.log(error);
+        }, () => {
+          console.log('성공');
+        }
+        );
+  });
+});
 
 
 // //Upload Profile Picture 
