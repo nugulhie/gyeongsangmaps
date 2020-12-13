@@ -66,6 +66,7 @@ function initEdit(user){
   var my_name = document.getElementById('my_name');
   var my_college= document.getElementById('my_college');
   var my_context= document.getElementById('my_context');
+  var my_profile = document.getElementById('my_profile_image');
   console.log(current_name, my_name, my_college, my_context);
   // 파이어베이스에서 userData collection의 user.uid가 일치하는 문서를 찾아 그 정보를 반환한다.
   // Use User.getToken() instead. 권장사항
@@ -78,6 +79,7 @@ function initEdit(user){
       my_name.value = doc.get("name");
       my_college.value = doc.get("college");
       my_context.innerHTML = doc.get("context");
+      my_profile.src = doc.get("profile");
     }else{
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -142,29 +144,6 @@ function update(){
       console.log("Error Writing document:", error);
     });
   })
-    //   if (doc.exists){  //문서 있음
-  //     return userRef.update({
-  //       name: document.getElementById('my_name').value,
-  //       college: document.getElementById('my_college').value,
-  //       context: document.getElementById('my_context').value
-  //     })
-  //   }
-  //   else { // 문서 없음
-  //     userRef.set({
-  //       name: document.getElementById('my_name').value,
-  //       college: document.getElementById('my_college').value,
-  //       context: document.getElementById('my_context').value,
-        
-  //       age: 22,
-  //       email: current.email
-  //     })
-  //   }
-  // }).catch(function(error) {
-  //   console.log("Error setting document:", error);
-  //   console.log(my_name, my_college, my_context);
-  // });
-  
-  // 회원가입할때 프로필을 미리 작성하는 페이지가 있으면 좋겠음.
 }
 
 
@@ -184,6 +163,12 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(selectedFile);
       console.log(selectedFile.name);
       fileName = selectedFile.name;
+      var my_profile = document.getElementById('my_profile_image');
+      /**
+      // [object%20File]:1 GET http://127.0.0.1:3000/[object%20File] 404 (Not Found)
+      my_profile.src = selectedFile;
+      */
+      my_profile.src = "/img/uploded.png";
   });
 
 
@@ -227,66 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
         );
   });
 });
-
-
-// //Upload Profile Picture 
-// //Altered code from: Firebase Youtube Channel. 
-
-// //Get Elements
-// var photo = document.getElementById('photo');
-// var uploader = document.getElementById('uploader');
-// const storage = firebase.storage();
-
-// //Listen for file 
-// photo.addEventListener('change', function(e){
-//   var file = e.target.files[0]; //Get File
-
-//   //Create a Storage Ref
-//   var user = firebase.auth().currentUser;
-//   var storageRef = storage.ref(user.uid + file + file.name);
-
-//   //Upload file
-//   var task = storageRef.put(file);
-  
-//   //Update Progress Bar 
-//   task.on('state_changed', 
-//   function progress(snapshot){
-//     var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) *100;
-//     uploader.value = percentage;
-//     //if percentage = 100
-//     //$(".overlay").hide();         
-//   },
-//   function error(err){
-//   },
-//   function complete(){
-//   }
-//   );           
-// });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   const storageRef = firebase.storage().ref();
-//   let selectedFile;
-
-//   // File 선택
-//   document.querySelector('.file-select').addEventListener('change', e => {
-//       selectedFile = e.target.files[0];
-//   });
-
-//   // File 업로드
-//   document.querySelector('.file-submit').addEventListener('click', () => {
-//     storageRef
-//       .child(`images/${selectedFile.name}`)
-//       .put(selectedFile)
-//       .on('state_changed', snapshot => {
-//           console.log(snapshot)
-//         }, error => {
-//           console.log(error);
-//         }, () => {
-//           console.log('성공');
-//         }
-//       );
-//   });
-// });
 
     function searchsubmit(){
     var input = document.getElementById("searchView");
