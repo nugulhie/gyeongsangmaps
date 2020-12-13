@@ -22,7 +22,9 @@ function initHome(user){
   var user_college= document.getElementById('user_college');
   var user_date= document.getElementById('user_date');
   var user_context= document.getElementById('user_context');
-  console.log(user_name, user_email, user_college, user_date, user_context);
+  var user_profile = document.getElementById('user_profile_image');
+
+  console.log("테스트", user_name, user_email, user_college, user_date, user_context);
 
   user_email.innerHTML = user.email // 프로필에 정의(회원가입)된 이메일
 
@@ -45,6 +47,8 @@ function initHome(user){
       user_college.innerHTML = doc.get("college");
       // user_email.innerHTML = doc.get("email"); // 문서에 정의된 이메일
       user_context.innerHTML = doc.get("context");
+      //유저 프로필 셋팅
+      user_profile.src = doc.get("profile");
     }else{
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -163,15 +167,18 @@ function update(){
   // 회원가입할때 프로필을 미리 작성하는 페이지가 있으면 좋겠음.
 }
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
   //const storageRef = firebase.storage().ref();
   let selectedFile;
 
-  // File 선택
+  
+  //let userId = userDataGet.uid;
 
+  // File 선택
   //var selectedFile;
   var fileName;
-
   document.querySelector('#photo_select').addEventListener('change', e => {
       selectedFile = e.target.files[0];
       console.log(selectedFile);
@@ -179,17 +186,42 @@ document.addEventListener('DOMContentLoaded', function () {
       fileName = selectedFile.name;
   });
 
+
+  
   // File 업로드
   document.querySelector('#photo_submit').addEventListener('click', () => {
+    var userData = auth.currentUser;
     storageRef
       //.child(`images/${selectedFile.name}`)
-      .child("images/"+fileName)
+      .child("images/"+userData.uid+"/"+fileName)
       .put(selectedFile)
       .on('state_changed', snapshot => {
           console.log(snapshot)
         }, error => {
           console.log(error);
         }, () => {
+
+          var userDataGet = auth.currentUser;
+          console.log(userDataGet.uid);
+
+          var starsRef = storageRef.child('images/'+userData.uid+"/"+fileName);
+
+          console.log(starsRef);
+
+          starsRef.getDownloadURL().then(function(url){
+
+            db.collection('users').doc(userDataGet.uid).update({
+              profile: url
+            }).then(function () {
+              console.log("firebase()DB, 유저 추가 성공");
+            }).catch(( ) => {
+              console.error("firebase()DB 추가 실패", error);
+            })
+
+          }).catch(function(error){
+            console.log(error);
+          });
+          alert("사진이 저장되었습니다.");
           console.log('성공');
         }
         );
