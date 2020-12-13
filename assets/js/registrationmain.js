@@ -1,14 +1,20 @@
+let today = new Date();
+//let todayFormat = today.format("YYYY-MM-DD HH:mm:ss");
+
 $(function() {
   
    const auth = firebase.auth();
    const db = firebase.firestore();
+
+   
 
    $("#sign_up").submit((e)=> {
      let email = $("#signup_email").val();
      let pass = $("#signup_pass").val();
      let cfpass = $("#signup_cfpass").val();
      let name = $("#signup_name").val();
- 
+    
+
      if(email == '' || pass == '' || cfpass == ''){
        swal("Error", "Email or password cannot be blank", "error");
        console.log(cfpass.toString().length);
@@ -29,14 +35,18 @@ $(function() {
           email: email,
           name: name,
           emailVerified: userCredential.user.emailVerified
+
         }
         console.log(UserData);
        
         //DB 유저의 정보를 저장
-        db.collection('userData').doc(UserData.id).set({
+        db.collection('user').doc(UserData.id).set({
           name: UserData.name,
-          email: UserData.email
-
+          email: UserData.email,
+          contents: " ",
+          college: " ",
+          context: " ",
+          date: today
         }).then(function () {
           console.log("firebase()DB, 유저 추가 성공");
         }).catch(( ) => {
