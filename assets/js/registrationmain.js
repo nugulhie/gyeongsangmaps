@@ -24,7 +24,7 @@ $(function() {
        console.log(cfpass.toString().length);
        
      }else if(cfpass.toString().length < 6){
-      swal("Error", "비밀번호가 일치하지 않습니다.", "error");
+      swal("Error", "비밀번호를 6자리 이상으로 해주세요.", "error");
 
      }else{
        const promise = auth.createUserWithEmailAndPassword(email, pass)
