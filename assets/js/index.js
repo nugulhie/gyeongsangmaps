@@ -306,12 +306,12 @@ function updateMap() {
 }
 
 function submitComment(){
-  uid = auth.currentUser.uid;
+  uida = auth.currentUser.uid;
   console.log("submitComment");
   console.log(loc.lat());
   console.log(loc.lng());
  
-  var docRef = db.collection("userData").doc(uid);
+  var docRef = db.collection("users").doc(uida);
   docRef.get().then(function(doc) {
     if (doc.exists) {
         console.log("Document data:", doc.data());
@@ -331,7 +331,7 @@ function submitComment(){
             
             console.log(doc.id, " => ", doc.data());
             var my_map = { id : user_name, comment: document.getElementById('w3review').value}
-            
+            console.log(my_map);
             console.log( document.getElementById('w3review').value);
             db.collection("cafes").doc(doc.id).update({
               comments : firebase.firestore.FieldValue.arrayUnion(my_map)});
